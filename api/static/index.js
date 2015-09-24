@@ -11,10 +11,17 @@ exports.register = function(server, options, next) {
 
 			return reply.file(Path.join(process.cwd(), 'public', file[1], request.params.path));
 		},
+
 		config: {
 			cache: {
 				expiresIn: 60 * 60 * 1000,
 				privacy: 'private'
+			},
+			cors: {
+				origin: [
+					'http://vanham.io',
+					'https://vanham.io'
+				]
 			}
 		}
 	});
