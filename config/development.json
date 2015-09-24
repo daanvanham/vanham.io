@@ -1,0 +1,40 @@
+{
+	"name": "vanham.io",
+	"manifest": {
+		"server": {
+			"app": {
+				"slogan": "Website"
+			}
+		},
+		"connections": [
+			{
+				"port": 8080,
+				"labels": ["web"]
+			}
+		],
+		"plugins": [
+			{
+				"./api/static": [
+					{
+						"select": ["web"],
+						"options": {}
+					}
+				]
+			},
+			{
+				"./api/web": [
+					{
+						"select": ["web"],
+						"options": {}
+					}
+				]
+			}
+		]
+	},
+	"database": {
+		"dsn": "mongodb://root@localhost/vanham.io"
+	},
+	"api": {
+		"version": "v1"
+	}
+}
