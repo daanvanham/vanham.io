@@ -14,10 +14,6 @@ Glue.compose(manifest, {relativeTo: __dirname}, function(error, svr) {
 
 	server = svr;
 
-	server.register(require('inert'), function(err) {
-		Hoek.assert(!err, err);
-	});
-
 	server.register(require('vision'), function(err) {
 		Hoek.assert(!err, err);
 
