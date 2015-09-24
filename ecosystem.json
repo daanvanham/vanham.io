@@ -1,0 +1,50 @@
+{
+	/**
+	 * PM2 deployment config for buggy
+	 */
+
+	/**
+	 * Here we declare the apps that must be managed by PM2
+	 * All options are listed here:
+	 * https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#json-app-declaration
+	 */
+	apps: [
+
+		// vanham.io
+		{
+			name: "vanham.io",
+			script: "index.js",
+			env: {
+			},
+			env_production : {
+				NODE_ENV: "production"
+			}
+		}
+
+	],
+
+
+	/**
+	 * PM2 help you to deploy apps over your servers
+	 * For more help go to :
+	 * https://github.com/Unitech/PM2/blob/master/ADVANCED_README.md#deployment-pm2--090
+	 */
+	deploy : {
+		development : {
+			user : "daan",
+			host : "inventory",
+			ref  : "origin/master",
+			repo : "https://github.com/daanvanham/vanham.io.git",
+			path : "/var/www/vanham.io/development",
+			"post-deploy" : "npm install --production && pm2 startOrReload ecosystem.json"
+		},
+		production : {
+			user : "daan",
+			host : "inventory",
+			ref  : "origin/master",
+			repo : "https://github.com/daanvanham/vanham.io.git",
+			path : "/var/www/vanham.io/production",
+			"post-deploy" : "npm install --production && pm2 startOrReload ecosystem.json --env production"
+		}
+	}
+}

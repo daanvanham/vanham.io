@@ -1,0 +1,10 @@
+{
+	"apps": [{
+		"name": "vanham.io",
+		"script": "index.js",
+		"args": [],
+		"watch": true,
+		"error_file": "./logs/error.log",
+		"out_file": "./logs/output.log"
+	}]
+}
