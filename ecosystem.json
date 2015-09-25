@@ -32,7 +32,7 @@
 	deploy : {
 		development : {
 			user : "daan",
-			host : "inventory",
+			host : "vanham.io",
 			ref  : "origin/master",
 			repo : "git@github.com:daanvanham/vanham.io.git",
 			path : "/var/www/vanham.io/development",
@@ -40,7 +40,7 @@
 		},
 		production : {
 			user : "daan",
-			host : "inventory",
+			host : "vanham.io",
 			ref  : "origin/master",
 			repo : "git@github.com:daanvanham/vanham.io.git",
 			path : "/var/www/vanham.io/production",
