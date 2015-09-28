@@ -30,7 +30,6 @@
     "blankie": "^1.1.1",
     "glue": "^2.3.0",
     "handlebars": "^3.0.3",
-    "handlebars-helper-sri": "0.0.0",
     "hapi": "^10.0.0",
     "hapi-status": "^1.0.0",
     "hoek": "^2.16.2",
@@ -38,6 +37,7 @@
     "joi": "^6.4.1",
     "mongoose": "^4.0.2",
     "scooter": "^2.0.1",
+    "subresource": "0.0.3",
     "vision": "^3.0.0"
   }
 }

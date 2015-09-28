@@ -5,6 +5,7 @@ var Glue = require('glue'),
 	Config = require('./lib/config'),
 	manifest = Config.get('manifest'),
 	handlebars = require('handlebars'),
+	helper = require('./helper/handlebars.js'),
 	server;
 
 Glue.compose(manifest, {relativeTo: __dirname}, function(error, svr) {
@@ -19,7 +20,7 @@ Glue.compose(manifest, {relativeTo: __dirname}, function(error, svr) {
 
 		server.views({
 			engines: {
-				html: require('handlebars-helper-sri').register(handlebars)
+				html: handlebars
 			},
 			path: __dirname + '/public/html'
 		});
