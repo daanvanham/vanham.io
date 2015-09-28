@@ -19,7 +19,6 @@ exports.register = function(server, options, next) {
 			},
 			cors: {
 				origin: [
-					'http://vanham.io',
 					'https://vanham.io'
 				]
 			}
