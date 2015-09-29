@@ -4,7 +4,6 @@ var Glue = require('glue'),
 	Hoek = require('hoek'),
 	Config = require('./lib/config'),
 	manifest = Config.get('manifest'),
-	handlebars = require('handlebars'),
 	helper = require('./helper/handlebars.js'),
 	server;
 
@@ -20,7 +19,7 @@ Glue.compose(manifest, {relativeTo: __dirname}, function(error, svr) {
 
 		server.views({
 			engines: {
-				html: handlebars
+				html: require('handlebars')
 			},
 			path: __dirname + '/public/html'
 		});
