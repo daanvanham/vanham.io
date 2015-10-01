@@ -42,10 +42,7 @@ body {
 	overflow: hidden;
 	border: 5px solid #fff;
 	background: url(/static/img/profile.jpg) no-repeat center center;
-}
-
-.profile-block .picture img {
-	width: 100%;
+	background-size: contain;
 }
 
 .profile-block span {
