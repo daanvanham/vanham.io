@@ -7,9 +7,16 @@ exports.register = function(server, options, next) {
 		method: 'GET',
 		path: '/static/{path*}',
 		handler: function(request, reply) {
-			var file = request.params.path.split('.');
+			var file = request.params.path.split('.'),
+				path = [process.cwd(), 'public'];
 
-			return reply.file(Path.join(process.cwd(), 'public', file[1], request.params.path));
+			if (['js', 'css'].indexOf(file[1]) !== -1) {
+				path.push(file[1]);
+			}
+
+			path.push(request.params.path);
+
+			return reply.file(Path.join(path.join('/')));
 		},
 
 		config: {
