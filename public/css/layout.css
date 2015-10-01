@@ -106,3 +106,14 @@ body {
 		margin-left: 30px;
 	}
 }
+
+@media only screen and (max-width: 420px) {
+	.profile-block > span {
+		font-size: .9em;
+	}
+
+	.profile-block .name {
+		font-size: 1em;
+		line-height: 2.2em;
+	}
+}
