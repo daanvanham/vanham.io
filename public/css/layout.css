@@ -151,6 +151,10 @@ a {
 		margin-right: 0;
 		margin-left: 0;
 	}
+
+	.blog-item a:hover {
+		background-color: transparent;
+	}
 }
 
 @media only screen and (max-width: 420px) {
