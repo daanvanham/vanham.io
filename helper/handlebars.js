@@ -5,7 +5,10 @@ var handlebars = require('handlebars'),
 	cache = {},
 	dependencies = {
 		js: [
-			'./public/js/konflux.js'
+			'./public/js/konflux.js',
+			// '//kon.fm/script/dev/knot-master.js',
+			'./public/js/knot.js',
+			'./public/js/base.js'
 		],
 		css: [
 			'./public/css/layout.css'
