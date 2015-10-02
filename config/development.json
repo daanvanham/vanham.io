@@ -32,6 +32,14 @@
 						"options": {}
 					}
 				]
+			},
+			{
+				"./api/blog": [
+					{
+						"select": ["web"],
+						"options": {}
+					}
+				]
 			}
 		]
 	},
