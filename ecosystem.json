@@ -36,7 +36,7 @@
 			ref  : "origin/master",
 			repo : "git@github.com:daanvanham/vanham.io.git",
 			path : "/var/www/vanham.io",
-			"post-deploy" : "npm install --production && pm2 startOrReload ecosystem.json --env production"
+			"post-deploy" : "npm install --production && NODE_ENV=production pm2 startOrReload ecosystem.json --env production"
 		},
 		production : {
 			user : "daan",
@@ -44,7 +44,7 @@
 			ref  : "origin/master",
 			repo : "git@github.com:daanvanham/vanham.io.git",
 			path : "/var/www/vanham.io",
-			"post-deploy" : "npm install --production && pm2 startOrReload ecosystem.json --env production"
+			"post-deploy" : "npm install --production && NODE_ENV=production pm2 startOrReload ecosystem.json --env production"
 		}
 	}
 }
