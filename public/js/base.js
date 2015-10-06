@@ -49,6 +49,8 @@ kx.ready(function() {
 					});
 				}
 
+				kx.style.addClass(document.querySelector('.site-header'), '-small');
+
 				detail.style.display = 'block';
 				list.style.display = 'none';
 			},
@@ -100,6 +102,8 @@ kx.ready(function() {
 		if (!event.state || typeof event.state !== 'object' || !('id' in event.state)) {
 			list.style.display = 'block';
 			detail.style.display = 'none';
+
+			kx.style.removeClass(document.querySelector('.site-header'), '-small');
 
 			return true;
 		}

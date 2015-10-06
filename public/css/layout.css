@@ -21,6 +21,11 @@ a {
 	height: 400px;
 }
 
+.site-header.-small {
+	height: 250px;
+	background-position: center center;
+}
+
 .site-header::after {
 	display: block;
 	padding-top: 56.25%;
