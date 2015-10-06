@@ -6,6 +6,8 @@ var handlebars = require('handlebars'),
 	dependencies = {
 		js: [
 			'./public/js/konflux.js',
+			// './public/js/konflux.canvas.js',
+			// './public/js/konflux.polygon.js',
 			// '//kon.fm/script/dev/knot-master.js',
 			'./public/js/knot.js',
 			'./public/js/base.js'
