@@ -22,14 +22,14 @@ kx.ready(function() {
 		}
 	}
 
-	kx.event.add('.blog-list', 'click', '.blog-item a', function(event) {
+	kx.event.add('.site-content', 'click', '.blog-item a', function(event) {
 		var target = this,
 			id = target.attributes['data-id'].value;
 
 		event.preventDefault();
 
 		if (!history.state || ('id' in history.state && history.state.id !== id)) {
-			history.pushState({id: id}, 'test', target.href);
+			history.pushState({id: id}, 'test', target.href.replace(window.location.href, ''));
 		}
 
 		kx.ajax.get({
