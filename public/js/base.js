@@ -1,7 +1,9 @@
 /* jshint browser:true */
 /* global kx, knot */
-;(function() {
+kx.ready(function() {
 	'use strict';
+
+	var version = 'v1';
 
 	function load(type, file) {
 		switch (type) {
@@ -20,26 +22,74 @@
 		}
 	}
 
-	var version = 'v1';
+	kx.event.add('.blog-list', 'click', '.blog-item a', function(event) {
+		var target = this,
+			id = target.attributes['data-id'].value;
 
-	kx.ajax.get({
-		url: '/api/' + version + '/blog',
+		event.preventDefault();
+
+		if (!history.state || ('id' in history.state && history.state.id !== id)) {
+			history.pushState({id: id}, 'test', target.href);
+		}
+
+		kx.ajax.get({
+			url: '/api/' + version + '/blog/' + id,
 			success: function(status, response, xhr) {
-				// status:		200
-				// response:	{result: [], statusCode: 200}
+				var detail = document.querySelector('.blog-detail');
 
-				knot.tie({blogs: response.result}, document.querySelector('.site-content'));
+				knot.tie(response.result, detail);
+				detail.style.display = 'block';
+
+				document.querySelector('.blog-list').style.display = 'none';
 			},
 
 			error: function(status, response, xhr) {
-				// status:		404
-				// response:	{error: 'Not Found', statusCode: 404}
+
 			}
+		});
+
+		return false;
 	});
 
-	// kx.event.ready(function() {
-	// 	setTimeout(function() {
-	// 		load('script', '/static/knot.js');
-	// 	}, 1000);
-	// });
-})();
+	kx.ajax.get({
+		url: '/template/detail',
+		success: function(status, response, xhr) {
+			document.querySelector('.site-content').innerHTML += response;
+			document.querySelector('.blog-detail').style.display = 'none';
+
+			kx.ajax.get({
+				url: '/api/' + version + '/blog',
+				success: function(status, response, xhr) {
+					knot.tie({blogs: response.result}, document.querySelector('.blog-list'));
+
+					if (window.location.pathname) {
+						window.onpopstate({state: history.state});
+					}
+				},
+
+				error: function(status, response, xhr) {
+
+				}
+			});
+
+			if (window.location.pathname) {
+				document.querySelector('.blog-list').style.display = 'none';
+			}
+		},
+
+		error: function(status, response, xhr) {
+
+		}
+	});
+
+	window.onpopstate = function(event) {
+		if (!event.state || typeof event.state !== 'object' || !('id' in event.state)) {
+			document.querySelector('.blog-list').style.display = 'block';
+			document.querySelector('.blog-detail').style.display = 'none';
+
+			return true;
+		}
+
+		return document.querySelector('.blog-item a[data-id="' + event.state.id + '"]').click();
+	};
+});

@@ -224,7 +224,7 @@
 	return JSONFormatter;
 });
 
-//END INCLUDE: lib/json-formatter [617.22µs, 5.89KB]
+//END INCLUDE: lib/json-formatter [700.36µs, 5.89KB]
 ;(function(global, factory) {
 	'use strict';
 
@@ -698,17 +698,6 @@
 					if (nodeValue !== element.nodeValue) {
 						buffer.rAF.apply(global, [function() {
 							element.nodeValue = nodeValue;
-
-							if (element.nodeType === 3) {
-								if (/^$/.test(nodeValue) && !('__parent' in element) && element === element.parentNode.firstChild) {
-									element.__parent = element.parentNode;
-									element.parentNode.removeChild(element);
-								}
-								else if ('__parent' in element) {
-									element.__parent.insertBefore(element, element.__parent.firstChild);
-									delete element.__parent;
-								}
-							}
 						}]);
 					}
 				});
@@ -1017,7 +1006,7 @@
 		;
 	});
 
-	//END INCLUDE: extension/attribute [101.81µs, 682.00bytes]
+	//END INCLUDE: extension/attribute [124.11µs, 682.00bytes]
 	//BEGIN INCLUDE: extension/style
 	register('style', function(element, model, config, delegation) {
 		'use strict';
@@ -1060,7 +1049,7 @@
 		;
 	});
 
-	//END INCLUDE: extension/style [75.77µs, 954.00bytes]
+	//END INCLUDE: extension/style [79.59µs, 954.00bytes]
 	//BEGIN INCLUDE: extension/text
 	register('text', function(element, model, key, delegation) {
 		'use strict';
@@ -1081,39 +1070,84 @@
 		if (delegated) {
 			delegated.subscribe(propagate);
 			delegated.element(text);
-
-			console.log(key, delegated.element());
 		}
 
 		propagate(model[key]);
 	});
 
-	//END INCLUDE: extension/text [58.51µs, 627.00bytes]
+	//END INCLUDE: extension/text [156.43µs, 585.00bytes]
 	//BEGIN INCLUDE: extension/each
 	register('each', function(element, model, key, delegation) {
 		'use strict';
 
 		var template = [],
-			delegated = delegation(model, key),
-			mimic;
+			target, delegated;
+
+		if (typeof key === 'object') {
+			target = key.target || false;
+
+			if (!target) {
+				throw new Error('Missing target for "each"');
+			}
+		}
+		else {
+			target = key;
+		}
+
+		delegated = delegation(model, target);
 
 		//  absorb all childNodes into the template
 		while (element.firstChild) {
 			template.push(element.removeChild(element.firstChild).cloneNode(true));
 		}
 
+		function refine(result) {
+			var apply;
+
+			['map', 'filter'].forEach(function(method) {
+				if (method in key) {
+					apply = key[method] instanceof Array ? key[method] : [key[method]];
+					apply.forEach(function(name) {
+						if (typeof model[name] === 'function') {
+							result = result[method](model[name]);
+						}
+						else if (typeof window[name] === 'function') {
+							result = result[method](window[name]);
+						}
+						else {
+							throw new Error(name + ' is not a ' + method + ' function');
+						}
+					});
+				}
+			});
+
+			return result;
+		}
+
 		function update() {
 			var output = document.createDocumentFragment(),
-				ties = [];
+				ties = [],
+				collection = model[target];
 
-			model[key].forEach(function(value, index) {
-				var arg = [typeof value === 'object' ? value : {$item: value}],
+			if (typeof key === 'object') {
+				collection = refine(collection);
+			}
+
+			collection.forEach(function(value, index) {
+				var item = typeof value === 'object' ? value : {},
+					arg = [item],
 					i;
+
+				item.$item   = value;
+				item.$parent = model[key];
+				item.$index  = index;
 
 				for (i = 0; i < template.length; ++i) {
 					arg.push(output.appendChild(template[i].cloneNode(true)));
 				}
 
+				//  keep track of the `tie`, so these can be applied once the document fragment
+				//  is appended to the DOM
 				ties.push(function() {
 					knot.tie.apply(knot, arg);
 				});
@@ -1123,9 +1157,9 @@
 			while (element.lastChild) {
 				element.removeChild(element.lastChild);
 			}
-
 			element.appendChild(output);
 
+			//  call all of the stored `ties`
 			ties.forEach(function(tie) {
 				tie();
 			});
@@ -1138,7 +1172,7 @@
 		update();
 	});
 
-	//END INCLUDE: extension/each [65.31µs, 965.00bytes]
+	//END INCLUDE: extension/each [149.38µs, 1.98KB]
 	//BEGIN INCLUDE: extension/event
 	register('event', function(element, model, config, delegation) {
 		'use strict';
@@ -1176,5 +1210,153 @@
 		;
 	});
 
-	//END INCLUDE: extension/event [109.41µs, 805.00bytes]
+	//END INCLUDE: extension/event [99.54µs, 805.00bytes]
+	//BEGIN INCLUDE: extension/input
+	register('input', function(element, model, key, delegation) {
+		var handler = {},
+			property, delegated;
+
+		function type(node) {
+			return 'type' in node ? node.type : (/^select/i.test(node.nodeName) ? 'select-' + (node.multiple ? 'multiple' : 'one') : 'text');
+		}
+
+		function handle(property) {
+			if (!(property in handler)) {
+				handler[property] = {
+					model: function() {
+						delegated(element[property]);
+					},
+					element: function(value) {
+						element[property] = value;
+					}
+				};
+			}
+
+			return handler[property];
+		}
+
+		function selection() {
+			var defaultOption = 'default' in key ? {value: null, label: key['default']} : false,
+				update = function() {
+					var offset = 0;
+
+					if ('options' in key && key.options in model) {
+						if (defaultOption) {
+							element.options[offset] = new Option(defaultOption.label, defaultOption.value);
+							++offset;
+						}
+
+						element.options.length = offset;
+
+						if (typeof model[key.options] === 'object') {
+							if (model[key.options] instanceof Array) {
+								model[key.options]
+									.forEach(function(value, index) {
+										if (typeof value === 'object') {
+											element.options[index + offset] = new Option(value.label || value.value || '', value.value || '');
+										}
+										else {
+											element.options[index + offset] = new Option(value);
+										}
+									})
+								;
+							}
+							else {
+								Object.keys(model[key.options])
+									.forEach(function(value, index) {
+										element.options[index + offset] = new Option(model[key.options][value], value);
+									})
+								;
+							}
+						}
+					}
+
+					if (element.options.length && delegated) {
+						delegated(element.options[element.selectedIndex].value);
+					}
+				},
+				select = function(value) {
+					var i;
+
+					for (i = 0; i < element.options.length; ++i) {
+						if (value instanceof Array) {
+							element.options[i].selected = value.indexOf(element.options[i].value) >= 0;
+						}
+						else {
+							element.options[i].selected = element.options[i].value === value;
+						}
+					}
+				},
+				delegatedList = 'options' in key ? delegation(model, key.options) : false,
+				delegated = 'value' in key ? delegation(model, key.value) : false,
+				initial = delegated ? delegated() : null;
+
+			if (delegatedList) {
+				delegatedList.subscribe(function(change) {
+					update();
+				});
+			}
+
+			if (!delegated && 'value' in key) {
+				delegated = knot.delegate(element.hasAttribute('multiple') ? [] : '');
+				Object.defineProperty(model, key.value, {
+					enumerable: true,
+					get: delegated,
+					set: delegated
+				});
+			}
+
+			if (delegated) {
+				if (initial instanceof Array) {
+					element.setAttribute('multiple', '');
+				}
+				else {
+					element.removeAttribute('multiple');
+				}
+
+				element.addEventListener('change', function(e) {
+					if (element.options.length) {
+						delegated(element.options[element.selectedIndex].value);
+					}
+				}, false);
+				delegated.subscribe(select);
+			}
+
+			if (delegatedList || delegated) {
+				update();
+				select(initial);
+			}
+		}
+
+		switch (type(element)) {
+			case 'checkbox':
+			case 'radio':
+				property = 'checked';
+				break;
+
+			case 'select':
+			case 'select-one':
+			case 'select-multiple':
+				//  select boxes are a very special kind of input, these must be handled differently
+				selection();
+				break;
+
+			default:
+				property = 'value'
+				break;
+		}
+
+		if (property) {
+			delegated = delegation(model, key[property]);
+			if (delegated) {
+				element.addEventListener('input', handle(property).model, false);
+				element.addEventListener('change', handle(property).model, false);
+				delegated.subscribe(handle(property).element);
+
+				element[property] = delegated();
+			}
+		}
+	});
+
+	//END INCLUDE: extension/input [205.39µs, 3.54KB]
 });
