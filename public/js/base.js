@@ -3,7 +3,10 @@
 kx.ready(function() {
 	'use strict';
 
-	var version = 'v1';
+	var error = function(status, response, xhr) {
+			console.error(status, response);
+		},
+		version = 'v1';
 
 	function load(type, file) {
 		switch (type) {
@@ -43,9 +46,7 @@ kx.ready(function() {
 				document.querySelector('.blog-list').style.display = 'none';
 			},
 
-			error: function(status, response, xhr) {
-
-			}
+			error: error
 		});
 
 		return false;
@@ -60,21 +61,24 @@ kx.ready(function() {
 			kx.ajax.get({
 				url: '/api/' + version + '/blog',
 				success: function(status, response, xhr) {
-					knot.tie({blogs: response.result}, document.querySelector('.blog-list'));
+					var list = document.querySelector('.blog-list'),
+						anchor;
 
-					if (window.location.pathname) {
-						window.onpopstate({state: history.state});
+					knot.tie({blogs: response.result}, list);
+
+					if (window.location.pathname !== '/' && (anchor = document.querySelector('a[href="' + window.location.pathname + '"]')) === null) {
+						history.replaceState(null, '', '/');
+						window.location.href = '/404';
+					}
+
+					if (anchor) {
+						anchor.click();
+						list.style.display = 'none';
 					}
 				},
 
-				error: function(status, response, xhr) {
-
-				}
+				error: error
 			});
-
-			if (window.location.pathname) {
-				document.querySelector('.blog-list').style.display = 'none';
-			}
 		},
 
 		error: function(status, response, xhr) {
