@@ -6,9 +6,6 @@ var handlebars = require('handlebars'),
 	dependencies = {
 		js: [
 			'./public/js/konflux.js',
-			// './public/js/konflux.canvas.js',
-			// './public/js/konflux.polygon.js',
-			// '//kon.fm/script/dev/knot-master.js',
 			'./public/js/knot.js',
 			'./public/js/base.js'
 		],
@@ -30,6 +27,10 @@ Object.keys(dependencies).forEach(function(type) {
 		var html = '';
 
 		dependencies[type].forEach(function(path) {
+			if (process.env.NODE_ENV === 'production') {
+				path = path.replace(/\.((?:j|cs)s)$/, '.min.$1');
+			}
+
 			if (!(path in cache)) {
 				cache[path] = subresource(path);
 			}
