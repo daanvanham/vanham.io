@@ -6,7 +6,9 @@ kx.ready(function() {
 	var error = function(status, response, xhr) {
 			console.error(status, response);
 		},
-		version = 'v1';
+		version = 'v1',
+		endpoint = '/api/' + version + '/blog',
+		list, detail, blog;
 
 	function load(type, file) {
 		switch (type) {
@@ -36,14 +38,19 @@ kx.ready(function() {
 		}
 
 		kx.ajax.get({
-			url: '/api/' + version + '/blog/' + id,
+			url: endpoint + '/' + id,
 			success: function(status, response, xhr) {
-				var detail = document.querySelector('.blog-detail');
+				if (!blog) {
+					blog = knot.tie(response.result, detail);
+				}
+				else {
+					Object.keys(response.result).forEach(function(key) {
+						blog[key] = response.result[key];
+					});
+				}
 
-				knot.tie(response.result, detail);
 				detail.style.display = 'block';
-
-				document.querySelector('.blog-list').style.display = 'none';
+				list.style.display = 'none';
 			},
 
 			error: error
@@ -56,13 +63,16 @@ kx.ready(function() {
 		url: '/template/detail',
 		success: function(status, response, xhr) {
 			document.querySelector('.site-content').innerHTML += response;
-			document.querySelector('.blog-detail').style.display = 'none';
+
+			list = document.querySelector('.blog-list');
+			detail = document.querySelector('.blog-detail');
+
+			detail.style.display = 'none';
 
 			kx.ajax.get({
-				url: '/api/' + version + '/blog',
+				url: endpoint,
 				success: function(status, response, xhr) {
-					var list = document.querySelector('.blog-list'),
-						anchor;
+					var anchor;
 
 					knot.tie({blogs: response.result}, list);
 
@@ -88,12 +98,28 @@ kx.ready(function() {
 
 	window.onpopstate = function(event) {
 		if (!event.state || typeof event.state !== 'object' || !('id' in event.state)) {
-			document.querySelector('.blog-list').style.display = 'block';
-			document.querySelector('.blog-detail').style.display = 'none';
+			list.style.display = 'block';
+			detail.style.display = 'none';
 
 			return true;
 		}
 
 		return document.querySelector('.blog-item a[data-id="' + event.state.id + '"]').click();
 	};
+
+	knot.extension('html', function(element, model, key, delegation) {
+		var delegated = delegation(model, key),
+			template = document.createElement('div'),
+			propagate = function(value) {
+				template.innerHTML = value;
+			};
+
+		element.appendChild(template);
+
+		if (delegated) {
+			delegated.subscribe(propagate);
+		}
+
+		propagate(model[key]);
+	});
 });
