@@ -10,8 +10,8 @@ exports.register = function(server, options, next) {
 			var file = request.params.path.split('.'),
 				path = [process.cwd(), 'public'];
 
-			if (['js', 'css'].indexOf(file[1]) !== -1) {
-				path.push(file[1]);
+			if (['js', 'css'].indexOf(file[file.length - 1]) !== -1) {
+				path.push(file[file.length - 1]);
 			}
 
 			path.push(request.params.path);
