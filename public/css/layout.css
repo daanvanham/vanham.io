@@ -123,6 +123,31 @@ a {
 	padding: 10px 15px;
 }
 
+.site-footer {
+	margin: 0 20px;
+	padding: 20px;
+	border-top: 1px solid #ccc;
+	text-align: center;
+}
+
+.site-footer .icon {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	margin: 0 5px;
+	background: transparent no-repeat center center;
+	background-size: contain;
+	vertical-align: bottom;
+}
+
+.site-footer .icon.-github {
+	background-image: url(/static/img/octocat.svg);
+}
+
+.site-footer .icon.-twitter {
+	background-image: url(/static/img/twitter.svg);
+}
+
 @media only screen and (max-width: 690px) {
 	.site-header {
 		height: auto;
