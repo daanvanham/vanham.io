@@ -5,7 +5,7 @@ exports.register = function(server, options, next) {
 		method: 'GET',
 		path: '/',
 		handler: function(request, reply) {
-			return reply.view('base');
+			return reply.view('base').header('Content-Type', 'text/html; charset=utf-8');
 		}
 	});
 
@@ -13,7 +13,7 @@ exports.register = function(server, options, next) {
 		method: 'GET',
 		path: '/404',
 		handler: function(request, reply) {
-			return reply.view('404').code(404);
+			return reply.view('404').code(404).header('Content-Type', 'text/html; charset=utf-8');
 		}
 	});
 
@@ -21,7 +21,7 @@ exports.register = function(server, options, next) {
 		method: 'GET',
 		path: '/{friendlyURL}',
 		handler: function(request, reply) {
-			return reply.view('base');
+			return reply.view('base').header('Content-Type', 'text/html; charset=utf-8');
 		}
 	});
 
@@ -29,7 +29,7 @@ exports.register = function(server, options, next) {
 		method: 'GET',
 		path: '/template/detail',
 		handler: function(request, reply) {
-			return reply.view('detail');
+			return reply.view('detail').header('Content-Type', 'text/html; charset=utf-8');
 		}
 	});
 
