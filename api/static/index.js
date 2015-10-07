@@ -21,7 +21,7 @@ exports.register = function(server, options, next) {
 
 		config: {
 			cache: {
-				expiresIn: 60 * 60 * 1000,
+				expiresIn: 60 * 60 * 1000 * 24,
 				privacy: 'private'
 			},
 			cors: {
