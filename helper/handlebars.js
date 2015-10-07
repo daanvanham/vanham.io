@@ -11,7 +11,7 @@ var handlebars = require('handlebars'),
 				'./public/js/base.js'
 			],
 			css: [
-				'./public/css/layout.css'
+				// './public/css/layout.css'
 			]
 		},
 		production: {
@@ -19,7 +19,7 @@ var handlebars = require('handlebars'),
 				'./public/js/combined.min.js'
 			],
 			css: [
-				'./public/css/combined.min.css'
+				// './public/css/combined.min.css'
 			]
 		}
 	},
