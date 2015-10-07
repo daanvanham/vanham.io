@@ -26,6 +26,10 @@ var handlebars = require('handlebars'),
 	createTag = function createTag(type, path) {
 		var tag = ['crossorigin=anonymous', 'integrity=' + cache[path].integrity, (type === 'js' ? 'src' : 'href') + '=' + path.replace(/\.\/public\/(?:cs|j)s/, '/static')];
 
+		if (process.env.NODE_ENV === 'production' && type === 'js') {
+			tag.push('async');
+		}
+
 		tag.unshift(type === 'css' ? '<link' : '<script');
 		tag.push(type === 'css' ? 'rel=stylesheet />' : '></script>');
 
