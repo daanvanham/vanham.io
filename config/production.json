@@ -43,9 +43,6 @@
 			}
 		]
 	},
-	"database": {
-		"dsn": "mongodb://root@localhost/vanham.io"
-	},
 	"api": {
 		"version": "v1"
 	}
