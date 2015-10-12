@@ -53,6 +53,8 @@ kx.ready(function() {
 
 				detail.style.display = 'block';
 				list.style.display = 'none';
+
+				window.scroll(0, 0);
 			},
 
 			error: error
