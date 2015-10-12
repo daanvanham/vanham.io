@@ -81,12 +81,13 @@ a {
 
 .blog-item {
 	margin: 0 30px 30px;
-	padding: 10px 15px 30px;
+	padding-bottom: 30px;
 	border-bottom: 2px solid #2c3e50;
 }
 
 .blog-item a {
 	display: block;
+	padding: 10px 15px;
 	transition: background ease .1s;
 }
 
@@ -148,8 +149,7 @@ a {
 }
 
 @media only screen and (max-width: 690px) {
-	.site-header,
-	.site-header.-small {
+	.site-header {
 		height: auto;
 	}
 

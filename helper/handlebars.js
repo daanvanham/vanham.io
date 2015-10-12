@@ -5,11 +5,19 @@ var handlebars = require('handlebars'),
 	cache = {},
 	dependencies = {
 		development: {
+			js: [
+				'./public/js/konflux.js',
+				'./public/js/knot.js',
+				'./public/js/base.js'
+			],
 			css: [
 				'./public/css/layout.css'
 			]
 		},
 		production: {
+			js: [
+				'./public/js/combined.min.js'
+			],
 			css: [
 				'./public/css/combined.min.css'
 			]

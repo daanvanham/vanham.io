@@ -19,16 +19,19 @@
 						<div class=picture></div>
 
 						<span class=name>Daan van Ham</span>
-						<span class=function>Front-Ender</span>
+						<span class=function>Front-EnderT</span>
 					</section>
 				</div>
 			</header>
 
 			<section class=site-content>
-				<section class=blog-list>
+				<section class=blog-list data-knot="each: blogs">
 					<article class=blog-item>
-						<header class=title>Content ...</header>
-						<section class=content>... coming soon</section>
+						<a data-knot="attribute: {href: path, 'data-id': id}">
+							<header class=title>{title}</header>
+							<section class=content>{intro}</section>
+							<footer class=meta>{created}</footer>
+						</a>
 					</article>
 				</section>
 			</section>
