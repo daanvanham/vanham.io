@@ -67,7 +67,7 @@ kx.ready(function() {
 			document.querySelector('.site-content').innerHTML += response;
 
 			list = document.querySelector('.blog-list');
-			detail = document.querySelector('.blog-detail');
+			detail = document.querySelector('.blog-item.-detail');
 
 			detail.style.display = 'none';
 
