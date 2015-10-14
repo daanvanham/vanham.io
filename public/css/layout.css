@@ -98,27 +98,25 @@ a {
 	border-bottom: 0;
 }
 
-.blog-item .title,
-.blog-detail .title {
+.blog-item header {
 	font-size: 2em;
 	line-height: 1.5em;
 }
 
-.blog-item .content,
-.blog-detail .content {
+.blog-item section {
 	margin: 10px 0;
 }
 
-.blog-item .meta {
+.blog-item footer {
 	font-size: .9em;
 	font-style: italic;
 }
 
-.blog-item .meta::before {
+.blog-item footer::before {
 	content: '-- ';
 }
 
-.blog-detail {
+.blog-item.-detail {
 	padding: 10px 15px;
 }
 
