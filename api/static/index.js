@@ -16,7 +16,7 @@ exports.register = function(server, options, next) {
 
 			path.push(request.params.path);
 
-			return reply.file(Path.join(path.join('/')));
+			return reply.file(Path.join.apply(Path, path));
 		},
 
 		config: {
