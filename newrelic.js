@@ -154,7 +154,7 @@ exports.config = {
 		 *
 		 * @env NEW_RELIC_LOG
 		 */
-		filepath: require('path').join(process.cwd(), 'newrelic_agent.log'),
+		filepath: require('path').join(process.cwd(), 'logs', 'newrelic_agent.log'),
 		/**
 		 * Whether to write to a log file at all
 		 *
