@@ -37,6 +37,7 @@
     "inert": "^3.0.1",
     "joi": "^6.4.1",
     "mongoose": "^4.0.2",
+    "newrelic": "^1.22.2",
     "scooter": "^2.0.1",
     "subresource": "0.0.3",
     "vision": "^3.0.0"

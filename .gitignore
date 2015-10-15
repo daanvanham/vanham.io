@@ -2,3 +2,4 @@ node_modules
 report
 client/build
 logs
+newrelic_agent.log

@@ -1,6 +1,7 @@
 'use strict';
 
-var Glue = require('glue'),
+var newrelic = require('newrelic'),
+	Glue = require('glue'),
 	Hoek = require('hoek'),
 	Config = require('./lib/config'),
 	manifest = Config.get('manifest'),
