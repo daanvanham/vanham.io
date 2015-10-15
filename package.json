@@ -1,6 +1,6 @@
 {
   "name": "vanham.io",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Website for vanham.io",
   "main": "index.js",
   "scripts": {},
