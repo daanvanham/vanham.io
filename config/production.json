@@ -15,9 +15,7 @@
 		"plugins": [
 			{"scooter": {}},
 			{"inert": {}},
-			{"blankie":{
-				"styleSrc": ["unsafe-inline", "self"]
-			}},
+			{"blankie":{}},
 
 			{
 				"./api/static": [
