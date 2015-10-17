@@ -13,12 +13,7 @@
 		// vanham.io
 		{
 			name: "vanham.io",
-			script: "index.js",
-			env: {
-			},
-			env_production : {
-				NODE_ENV: "production"
-			}
+			script: "index.js"
 		}
 
 	],
@@ -36,7 +31,7 @@
 			ref  : "origin/master",
 			repo : "git@github.com:daanvanham/vanham.io.git",
 			path : "/var/www/vanham.io",
-			"post-deploy" : "npm install --production && NODE_ENV=production pm2 startOrReload ecosystem.json --env production"
+			"post-deploy" : "npm install --production && pm2 startOrReload ecosystem.json"
 		},
 		production : {
 			user : "daan",
