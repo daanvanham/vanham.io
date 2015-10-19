@@ -39,6 +39,7 @@
     "mongoose": "^4.0.2",
     "newrelic": "^1.22.2",
     "scooter": "^2.0.1",
+    "submerge": "^1.0.9",
     "subresource": "0.0.3",
     "vision": "^3.0.0"
   }
