@@ -1,48 +1,5 @@
 {
-	"name": "vanham.io",
-	"manifest": {
-		"server": {
-			"app": {
-				"slogan": "Website"
-			}
-		},
-		"connections": [
-			{
-				"port": 8080,
-				"labels": ["web"]
-			}
-		],
-		"plugins": [
-			{"scooter": {}},
-			{"inert": {}},
-			{"blankie":{}},
-
-			{
-				"./api/static": [
-					{
-						"select": ["web"],
-						"options": {}
-					}
-				]
-			},
-			{
-				"./api/web": [
-					{
-						"select": ["web"],
-						"options": {}
-					}
-				]
-			}
-		]
-	},
-	"api": {
-		"version": "v1"
-	},
 	"newrelic": {
-		"app_name": ["vanham.io"],
-		"license_key": "eadbdc537cbb5ba31e68b1bfb13c94a75b1b130c",
-		"logging": {
-			"level": "info"
-		}
+		"app_name": ["vanham.io"]
 	}
 }
