@@ -2,6 +2,8 @@ body {
 	margin: 0;
 	padding: 0;
 
+	overflow-x: hidden;
+
 	font: 14px/22px Arial;
 	color: #2c3e50;
 
@@ -14,64 +16,6 @@ a {
 	outline: none;
 }
 
-.site-header {
-	position: relative;
-	background: #2c3e50 url(/static/img/cover.png) no-repeat center top;
-	background-size: cover;
-	height: 400px;
-}
-
-.site-header.-small {
-	height: 250px;
-	background-position: center center;
-}
-
-.site-header::after {
-	display: block;
-	padding-top: 56.25%;
-}
-
-.site-header .wrapper {
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-}
-
-.profile-block {
-	position: absolute;
-	bottom: -80px;
-	left: 50%;
-	width: 75%;
-	margin-left: -40%;
-}
-
-.profile-block .picture {
-	display: inline-block;
-	width: 175px;
-	height: 175px;
-	border-radius: 50%;
-	overflow: hidden;
-	border: 5px solid #fff;
-	background: url(/static/img/profile.jpg) no-repeat center center;
-	background-size: contain;
-}
-
-.profile-block span {
-	display: inline-block;
-	margin-top: 76px;
-	vertical-align: top;
-	color: #fff;
-}
-
-.profile-block .name {
-	font-size: 1.7em;
-	border-right: 2px solid #fff;
-	padding-right: 10px;
-	margin: 70px 6px 0 15px;
-	line-height: 1.2em;
-}
-
 .site-content {
 	width: 75%;
 	min-height: 150px;
@@ -79,137 +23,9 @@ a {
 	padding: 85px 0 50px;
 }
 
-.blog-item {
-	margin: 0 30px 30px;
-	padding-bottom: 30px;
-	border-bottom: 2px solid #2c3e50;
-}
-
-.blog-item a {
-	display: block;
-	padding: 10px 15px;
-	transition: background ease .1s;
-}
-
-.blog-item a:hover {
-	background-color: #f5f5f5;
-}
-
-.blog-item:last-child {
-	border-bottom: 0;
-}
-
-.blog-item header {
-	font-size: 2em;
-	line-height: 1.5em;
-}
-
-.blog-item section {
-	margin: 10px 0;
-}
-
-.blog-item footer {
-	font-size: .9em;
-	font-style: italic;
-}
-
-.blog-item footer::before {
-	content: '-- ';
-}
-
-.blog-item.-detail {
-	padding: 10px 15px;
-}
-
-.site-footer {
-	margin: 0 20px;
-	padding: 20px;
-	border-top: 1px solid #ccc;
-	text-align: center;
-}
-
-.site-footer .icon {
-	display: inline-block;
-	width: 30px;
-	height: 30px;
-	margin: 0 5px;
-	background: transparent no-repeat center center;
-	background-size: contain;
-	vertical-align: bottom;
-}
-
-.site-footer .icon.-github {
-	background-image: url(/static/img/octocat.svg);
-}
-
-.site-footer .icon.-twitter {
-	background-image: url(/static/img/twitter.svg);
-}
-
 @media only screen and (max-width: 690px) {
-	.site-header {
-		height: auto;
-	}
-
-	.site-header::after {
-		content: '';
-	}
-
-	.site-header .wrapper {
-		position: absolute;
-	}
-
-	.profile-block {
-		position: absolute;
-		width: 95%;
-		top: auto;
-		bottom: -30px;
-		left: 10px;
-		margin-left: 0;
-	}
-
 	.site-content {
 		width: 100%;
 		padding-top: 40px;
-	}
-
-	.profile-block .picture {
-		width: 125px;
-		height: 125px;
-	}
-
-	.profile-block .name {
-		font-size: 1.4em;
-		line-height: 1.6em;
-	}
-
-	.blog-item {
-		margin-right: 0;
-		margin-left: 0;
-	}
-
-	.blog-item a:hover {
-		background-color: transparent;
-	}
-}
-
-@media only screen and (max-width: 420px) {
-	.profile-block > span {
-		font-size: .9em;
-	}
-
-	.profile-block .name {
-		font-size: 1em;
-		line-height: 2.2em;
-	}
-}
-
-@media only screen and (max-width: 365px) {
-	.profile-block .name {
-		border-right: 0;
-	}
-
-	.profile-block .function {
-		display: none;
 	}
 }
