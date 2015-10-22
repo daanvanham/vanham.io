@@ -45,5 +45,12 @@
 	},
 	"api": {
 		"version": "v1"
+	},
+	"newrelic": {
+		"app_name": ["vanham.io dev"],
+		"license_key": "eadbdc537cbb5ba31e68b1bfb13c94a75b1b130c",
+		"logging": {
+			"level": "info"
+		}
 	}
 }
