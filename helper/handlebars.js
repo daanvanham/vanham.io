@@ -6,7 +6,11 @@ var handlebars = require('handlebars'),
 	dependencies = {
 		development: {
 			css: [
-				'./public/css/layout.css'
+				'./public/css/layout.css',
+				'./public/css/site-header.css',
+				'./public/css/profile-block.css',
+				'./public/css/blog-item.css',
+				'./public/css/site-footer.css'
 			]
 		},
 		production: {
