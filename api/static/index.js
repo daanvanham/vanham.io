@@ -5,13 +5,19 @@ var Path = require('path');
 exports.register = function(server, options, next) {
 	server.route({
 		method: 'GET',
-		path: '/static/{path*}',
+		path: '/static/{spoiler}/{path*}',
 		handler: function(request, reply) {
 			var file = request.params.path.split('.'),
-				path = [process.cwd(), 'public'];
+				path = [process.cwd(), 'public'],
+				type = file[file.length - 1];
 
-			if (['js', 'css'].indexOf(file[file.length - 1]) !== -1) {
+			if (['js', 'css'].indexOf(type) !== -1) {
 				path.push(file[file.length - 1]);
+			}
+
+			if (request.params.spoiler === 'img') {
+				// if img and cache spoiler is missing just return the image
+				request.params.path = 'img/' + request.params.path;
 			}
 
 			path.push(request.params.path);
