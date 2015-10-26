@@ -7,7 +7,7 @@ var handlebars = require('handlebars'),
 		development: {
 			js: [
 				'./public/js/konflux.js',
-				'./public/js/knot.js',
+				'./public/js/kontext.js',
 				'./public/js/base.js'
 			],
 			css: [

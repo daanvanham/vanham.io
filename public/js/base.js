@@ -1,5 +1,5 @@
 /* jshint browser:true */
-/* global kx, knot */
+/* global kx, kontext */
 kx.ready(function() {
 	'use strict';
 
@@ -41,7 +41,7 @@ kx.ready(function() {
 			url: endpoint + '/' + id,
 			success: function(status, response, xhr) {
 				if (!blog) {
-					blog = knot.tie(response.result, detail);
+					blog = kontext.bind(response.result, detail);
 				}
 				else {
 					Object.keys(response.result).forEach(function(key) {
@@ -78,7 +78,7 @@ kx.ready(function() {
 				success: function(status, response, xhr) {
 					var anchor;
 
-					knot.tie({blogs: response.result}, list);
+					kontext.bind({blogs: response.result}, list);
 
 					if (window.location.pathname !== '/' && (anchor = document.querySelector('a[href="' + window.location.pathname + '"]')) === null) {
 						history.replaceState(null, '', '/');
@@ -113,19 +113,13 @@ kx.ready(function() {
 		return document.querySelector('.blog-item a[data-id="' + event.state.id + '"]').click();
 	};
 
-	knot.extension('html', function(element, model, key, delegation) {
-		var delegated = delegation(model, key),
-			template = document.createElement('div'),
-			propagate = function(value) {
-				template.innerHTML = value;
-			};
+	kontext.extension('html', function(element, model, key) {
+		var template = element.appendChild(document.createElement('div'));
 
-		element.appendChild(template);
+		model.delegation(key).on('update', function(model) {
+			template.innerHTML = model[key];
+		});
 
-		if (delegated) {
-			delegated.subscribe(propagate);
-		}
-
-		propagate(model[key]);
+		template.innerHTML = model[key];
 	});
 });
