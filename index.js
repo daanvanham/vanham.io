@@ -1,8 +1,8 @@
 'use strict';
 
-var newrelic = require('newrelic'),
-	Glue = require('glue'),
+var Glue = require('glue'),
 	Hoek = require('hoek'),
+	mongoose = require('mongoose'),
 	Config = require('./lib/config'),
 	manifest = Config.get('manifest'),
 	helper = require('./helper/handlebars.js'),
@@ -14,6 +14,7 @@ Glue.compose(manifest, {relativeTo: __dirname}, function(error, svr) {
 	}
 
 	server = svr;
+	mongoose.connect(Config.get('database/dsn'));
 
 	server.register(require('vision'), function(err) {
 		Hoek.assert(!err, err);

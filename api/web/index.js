@@ -1,6 +1,10 @@
 'use strict';
 
 function handler(view) {
+	if (process.env.NODE_ENV === 'production') {
+		view += '.min.html';
+	}
+
 	return function(request, reply) {
 		reply.view(view).header('Content-Type', 'text/html; charset=utf-8');
 	};

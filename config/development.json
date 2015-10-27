@@ -15,8 +15,18 @@
 		"plugins": [
 			{"scooter": {}},
 			{"inert": {}},
-			{"blankie":{}},
+			{"blankie":{
+				"reportUri": "/api/v1/report/csp"
+			}},
 
+			{
+				"./api/report": [
+					{
+						"select": ["web"],
+						"options": {}
+					}
+				]
+			},
 			{
 				"./api/static": [
 					{
@@ -52,5 +62,8 @@
 		"logging": {
 			"level": "info"
 		}
+	},
+	"database": {
+		"dsn": "mongodb://daan@localhost/vanham"
 	}
 }
