@@ -3,10 +3,28 @@
 var Glue = require('glue'),
 	Hoek = require('hoek'),
 	mongoose = require('mongoose'),
+	fs = require('fs'),
 	Config = require('./lib/config'),
 	manifest = Config.get('manifest'),
 	helper = require('./helper/handlebars.js'),
 	server;
+
+fs.readdirSync('./api')
+	.filter(function(item) {
+		return fs.statSync('./api/' + item).isDirectory();
+	})
+	.forEach(function(item) {
+		var plugin = {};
+
+		plugin['./api/' + item] = [
+			{
+				select: ['web'],
+				options: {}
+			}
+		];
+
+		manifest.plugins.push(plugin);
+	});
 
 Glue.compose(manifest, {relativeTo: __dirname}, function(error, svr) {
 	if (error) {

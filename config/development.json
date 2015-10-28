@@ -17,32 +17,7 @@
 			{"inert": {}},
 			{"blankie":{
 				"reportUri": "/api/v1/report/csp"
-			}},
-
-			{
-				"./api/report": [
-					{
-						"select": ["web"],
-						"options": {}
-					}
-				]
-			},
-			{
-				"./api/static": [
-					{
-						"select": ["web"],
-						"options": {}
-					}
-				]
-			},
-			{
-				"./api/web": [
-					{
-						"select": ["web"],
-						"options": {}
-					}
-				]
-			}
+			}}
 		]
 	},
 	"api": {
