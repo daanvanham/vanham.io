@@ -1,32 +1,31 @@
 'use strict';
 
-var Glue = require('glue'),
+const Glue = require('glue'),
 	Hoek = require('hoek'),
 	mongoose = require('mongoose'),
 	fs = require('fs'),
 	Config = require('./lib/config'),
 	manifest = Config.get('manifest'),
-	helper = require('./helper/handlebars.js'),
-	server;
+	helper = require('./helper/handlebars.js');
+
+let server;
 
 fs.readdirSync('./api')
-	.filter(function(item) {
+	.filter(item => {
 		return fs.statSync('./api/' + item).isDirectory();
 	})
-	.forEach(function(item) {
-		var plugin = {};
+	.forEach(item => {
+		let plugin = {};
 
-		plugin['./api/' + item] = [
-			{
-				select: ['web'],
-				options: {}
-			}
-		];
+		plugin['./api/' + item] = [{
+			select: ['web'],
+			options: {}
+		}];
 
 		manifest.plugins.push(plugin);
 	});
 
-Glue.compose(manifest, {relativeTo: __dirname}, function(error, svr) {
+Glue.compose(manifest, {relativeTo: __dirname}, (error, svr) => {
 	if (error) {
 		throw new Error(error);
 	}
@@ -34,7 +33,7 @@ Glue.compose(manifest, {relativeTo: __dirname}, function(error, svr) {
 	server = svr;
 	mongoose.connect(Config.get('database/dsn'));
 
-	server.register(require('vision'), function(err) {
+	server.register(require('vision'), err => {
 		Hoek.assert(!err, err);
 
 		server.views({
@@ -46,7 +45,7 @@ Glue.compose(manifest, {relativeTo: __dirname}, function(error, svr) {
 	});
 
 	if (!module.parent) {
-		server.start(function(error) {
+		server.start(error => {
 			console.log(' - server started at port ' + server.info.port);
 		});
 	}

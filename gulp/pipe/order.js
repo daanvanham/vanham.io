@@ -1,6 +1,6 @@
 'use strict';
 
-var priority;
+let priority;
 
 function match(a, b, find) {
 	var mA = +(a.indexOf(find) >= 0),
@@ -12,7 +12,7 @@ function match(a, b, find) {
 function order(a, b) {
 	var verdict;
 
-	priority.forEach(function(find) {
+	priority.forEach(find => {
 		if (!verdict) {
 			verdict = match(a.path, b.path, find);
 		}
@@ -21,11 +21,11 @@ function order(a, b) {
 	return verdict || 0;
 }
 
-module.exports = function(stream, devour) {
+module.exports = (stream, devour) => {
 	priority = devour.config('priority', ['var', 'base']);
 
 	return stream
+
 		//  put the files in the proper order
-		.pipe(devour.plugin('sort', order))
-	;
+		.pipe(devour.plugin('sort', order));
 };

@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(stream, devour, type, min) {
+module.exports = (stream, devour, type, min) => {
 	stream = stream
 		.pipe(devour.pipe('order'))
 		.pipe(devour.plugin('concat', 'combined.' + type));

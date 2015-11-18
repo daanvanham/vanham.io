@@ -4,7 +4,7 @@
  * described in here, there's been a terrible mistake.
  */
 
-var Config = require('./lib/config');
+const Config = require('./lib/config');
 
 exports.config = {
 	/**

@@ -1,8 +1,8 @@
 'use strict';
 
-var sourcemaps = require('gulp-sourcemaps');
+const sourcemaps = require('gulp-sourcemaps');
 
-module.exports = function(stream, devour) {
+module.exports = (stream, devour) => {
 	return stream
 		.pipe(sourcemaps.init())
 		.pipe(devour.write('./js'))

@@ -1,13 +1,13 @@
 'use strict';
 
-var Path = require('path');
+const Path = require('path');
 
-exports.register = function(server, options, next) {
+exports.register = (server, options, next) => {
 	server.route({
 		method: 'GET',
 		path: '/static/{spoiler}/{path*}',
-		handler: function(request, reply) {
-			var file = request.params.path.split('.'),
+		handler: (request, reply) => {
+			let file = request.params.path.split('.'),
 				path = [process.cwd(), 'public'],
 				type = file[file.length - 1];
 

@@ -5,12 +5,12 @@ function handler(view) {
 		view += '.min.html';
 	}
 
-	return function(request, reply) {
+	return (request, reply) => {
 		reply.view(view).header('Content-Type', 'text/html; charset=utf-8');
 	};
 }
 
-exports.register = function(server, options, next) {
+exports.register = (server, options, next) => {
 	server.route({
 		method: 'GET',
 		path: '/',

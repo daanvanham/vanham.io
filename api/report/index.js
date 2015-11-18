@@ -1,6 +1,6 @@
 'use strict';
 
-var Config = require(process.cwd() + '/lib/config'),
+const Config = require(process.cwd() + '/lib/config'),
 	mongoose = require('mongoose'),
 	ReportModel = mongoose.model('report', new mongoose.Schema({
 		'user-agent': String,
@@ -16,12 +16,12 @@ var Config = require(process.cwd() + '/lib/config'),
  * https://gist.github.com/rspieker/8ab68c383c95fe3e306a
  */
 
-exports.register = function(server, options, next) {
+exports.register = (server, options, next) => {
 	server.route({
 		method: 'POST',
 		path: '/api/v1/report/csp',
-		handler: function(request, reply) {
-			var type = request.headers['content-type'].match(/^application\/(csp-report|json)$/),
+		handler: (request, reply) => {
+			let type = request.headers['content-type'].match(/^application\/(csp-report|json)$/),
 				data = type ? JSON.parse(String(request.payload)) : null;
 
 			if (!type || !data) {
@@ -32,7 +32,7 @@ exports.register = function(server, options, next) {
 				'user-agent': request.headers['user-agent'],
 				version: type ? (type[1] === 'csp-report' ? 2 : 1) : null,
 				report: data
-			}).save(function(error) {
+			}).save(error => {
 				reply();
 			});
 		},

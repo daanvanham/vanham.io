@@ -1,7 +1,7 @@
 'use strict';
 
-var del = require('del');
+const del = require('del');
 
-module.exports = function(stream, devour) {
+module.exports = (stream, devour) => {
 	return del('./client/build');
 };

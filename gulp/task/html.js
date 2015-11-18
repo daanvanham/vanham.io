@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(stream, devour) {
+module.exports = (stream, devour) => {
 	return stream
 		.pipe(devour.write('./html'))
 		.pipe(devour.plugin('minify-html'))

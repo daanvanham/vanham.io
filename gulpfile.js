@@ -1,14 +1,14 @@
 'use strict';
 
-var Wanted = require('wanted'),
+const Wanted = require('wanted'),
 	Devour = require('devour'),
 	gutil = require('gulp-util'),
 	hjson = require('hjson'),
 	fs = require('fs');
 
-(function(wanted) {
+(wanted => {
 	wanted
-		.on('install', function(module) {
+		.on('install', module => {
 			//  accept all module installs/updates
 			module.accept();
 
@@ -20,8 +20,8 @@ var Wanted = require('wanted'),
 			);
 		})
 
-		.on('ready', function() {
-			fs.readFile(__dirname + '/gulp/config/devour.json', function(error, data) {
+		.on('ready', () => {
+			fs.readFile(__dirname + '/gulp/config/devour.json', (error, data) => {
 				new Devour(hjson.parse(String(data)))
 					.task('clean')
 					.task('html',       ['./public/html/**/*.html'])
