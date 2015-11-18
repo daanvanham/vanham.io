@@ -14,11 +14,16 @@ const handlebars = require('handlebars'),
 				'./public/css/blog-item.css',
 				'./public/css/full-block.css',
 				'./public/css/site-footer.css'
+			],
+			js: [
+				'./public/js/loadcss.js'
 			]
 		},
 		production: {
 			css: [
-				'./public/css/combined.min.css'
+			],
+			js: [
+				'./public/js/loadcss.js'
 			]
 		}
 	};
