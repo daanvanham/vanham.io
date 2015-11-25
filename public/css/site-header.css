@@ -1,6 +1,6 @@
 .site-header {
 	position: relative;
-	background: #181849 url(/static/img/cover.png) no-repeat center top;
+	background: #181849 url(/static/img/cover.svg) no-repeat center bottom;
 	background-size: contain;
 	height: 400px;
 }
