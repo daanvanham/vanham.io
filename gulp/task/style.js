@@ -11,8 +11,9 @@ function spoiler(match, file) {
 module.exports = (stream, devour) => {
 	return stream
 		.pipe(devour.plugin('myth'))
-		.pipe(devour.plugin('minify-css'))
+		//.pipe(devour.plugin('minify-css'))
 		.pipe(devour.pipe('combine', 'css'))
+		.pipe(devour.pipe('selector', 'css'))
 		.pipe(devour.plugin('rename', devour.min))
 		.pipe(devour.plugin('replace', /url\(\/static\/img([a-zA-Z\/\.]+)\)/g, spoiler))
 		.pipe(devour.write('./css'));
