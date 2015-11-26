@@ -34,6 +34,12 @@ exports.register = (server, options, next) => {
 				origin: [
 					'https://vanham.io'
 				]
+			},
+			plugins: {
+				blankie: {
+					styleSrc: ['self', 'unsafe-inline'],
+					reportUri: '/api/1.0.0/csp/report'
+				}
 			}
 		}
 	});
