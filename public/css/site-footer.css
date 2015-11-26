@@ -22,3 +22,8 @@
 .site-footer .icon.-twitter {
 	background-image: url(/static/img/twitter.svg);
 }
+
+.site-footer .icon.-instagram {
+	background-image: url(/static/img/instagram.svg);
+	background-size: 95%;
+}
