@@ -1,7 +1,7 @@
 'use strict';
 
 var emoji = require('emoji-table').map(function(item) {
-		return item.code;
+		return item.char;
 	}),
 
 	map = {};
@@ -17,10 +17,10 @@ module.exports = (stream, devour, type) => {
 
 			item.replace(/\./, '').split('.').forEach(function(item) {
 				if (!(item in map)) {
-					map[item] = emoji.shift().substr(2);
+					map[item] = emoji.shift();
 				}
 
-				match = match.replace(item, (type === 'css' ? '\\0' : '&#x') + map[item] + (type === 'css' ? ' ' : ''));
+				match = match.replace(item, map[item]);
 			});
 		});
 
