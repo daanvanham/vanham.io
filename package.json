@@ -33,7 +33,7 @@
     "blankie": "^1.1.1",
     "glue": "^2.4.0",
     "handlebars": "^4.0.3",
-    "hapi-status": "^1.0.0",
+    "hapi-status": "^2.0.0",
     "hoek": "^2.16.2",
     "inert": "^3.2.0",
     "joi": "^6.9.1",
