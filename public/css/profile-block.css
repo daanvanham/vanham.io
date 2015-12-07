@@ -15,6 +15,15 @@
 	border: 5px solid #fff;
 	background: url(/static/img/profile.jpg) no-repeat center center;
 	background-size: contain;
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+	transition: filter ease .3s, transform ease .2s;
+}
+
+.profile-block .picture:hover {
+	-webkit-filter: none;
+	filter: none;
+	transform: scale(1.2);
 }
 
 .profile-block span {
