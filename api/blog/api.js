@@ -1,38 +1,15 @@
 'use strict';
 
 var status = require('hapi-status'),
+	mongoose = require('mongoose'),
 	dummy = [
 		{
-			id: '123',
-			path: '/dit-is-een-test',
-			title: 'Dit is een test!',
-			intro: 'Pork belly jowl sausage, corned beef pork drumstick pancetta tongue biltong shank t-bone hamburger cupim. Beef ribs picanha ground round jerky alcatra hamburger. Prosciutto pork flank corned beef strip steak, tail ham hock shank cupim venison hamburger kielbasa. Capicola pork belly shank leberkas jowl ham chicken short loin bacon flank sirloin alcatra biltong venison. Ribeye kielbasa pig, turducken spare ribs biltong turkey shoulder fatback tail landjaeger jerky. Jerky leberkas kevin ball tip t-bone bresaola venison pork loin brisket fatback. Sirloin boudin beef ribs drumstick, pork belly short ribs pancetta filet mignon.',
-			content: '<p>Brisket jerky alcatra cupim frankfurter pig pastrami chicken turkey meatloaf pork belly shank shoulder drumstick. Drumstick biltong cow tenderloin short loin pork loin jowl hamburger flank spare ribs rump swine ribeye. Hamburger t-bone ham hock beef ribs alcatra meatloaf short ribs, porchetta picanha short loin doner jowl boudin. Sausage ground round doner pork chop beef tri-tip picanha shoulder shankle pancetta. Jerky pig biltong cow, beef tail sirloin capicola.</p><div class="full-block"><div class="wrapper -quote"><p>so this could be some full width thingy</p></div></div><p>Drumstick venison jowl short ribs ground round ribeye. Pancetta shankle alcatra tri-tip, bacon rump beef ribs. Beef bresaola cow, rump venison drumstick pork loin kevin porchetta flank beef ribs andouille. Hamburger jowl beef fatback chuck shankle. Beef ribs chicken andouille pig. Alcatra ball tip kevin capicola tri-tip kielbasa shoulder pork. Short ribs tenderloin porchetta tail capicola frankfurter shank.</p>',
-			created: '2015-10-01 18:00:00'
-		},
-		{
-			id: '345',
-			path: '/hier-is-er-nog-een',
-			title: 'Hier is er nog een!',
-			intro: 'Tenderloin jerky pancetta, spare ribs filet mignon prosciutto pastrami turkey boudin ham pork ham hock. Fatback prosciutto venison t-bone brisket meatball chicken pig biltong. Beef ribs tongue pastrami shank bacon ham hock kielbasa, fatback ball tip corned beef capicola pork chop flank strip steak pork. Turducken ball tip ham tenderloin andouille pastrami rump filet mignon cupim spare ribs. Cow ribeye landjaeger, venison pork belly beef ribs doner porchetta. Beef bresaola tri-tip spare ribs, prosciutto swine venison jerky jowl ham hock pork chop andouille meatloaf flank ground round. Pork chop turkey swine, pig picanha kevin pastrami capicola spare ribs.',
-			content: '<div class="full-block"><div class="wrapper -quote"><p>so this could be some full width thingy</p></div></div><p>Jowl cupim sausage, strip steak t-bone landjaeger shankle bacon drumstick doner shoulder. Venison swine ground round ball tip, brisket biltong frankfurter andouille short loin. Cow spare ribs ground round, pancetta meatball beef ribs tail rump t-bone tenderloin. Tail t-bone filet mignon tongue chuck, beef ribs ground round flank pancetta meatball leberkas strip steak tenderloin. Boudin leberkas short ribs capicola. Shoulder filet mignon short loin ham hock landjaeger rump tenderloin bresaola kevin prosciutto turducken tail short ribs cow.</p>',
-			created: '2015-10-01 18:00:00'
-		},
-		{
-			id: '567',
-			path: '/tests-all-over-the-place',
-			title: 'Tests all over the place!',
-			intro: 'Tenderloin frankfurter meatball, tri-tip swine hamburger rump ball tip short loin salami flank boudin pork belly capicola. Jerky bresaola pancetta, pork belly ground round cupim leberkas shoulder picanha swine tongue porchetta. Doner leberkas pork loin meatloaf picanha beef ribs. Salami turducken tongue doner. Prosciutto fatback pancetta tongue, short ribs turducken jerky strip steak beef cow andouille porchetta meatball.',
-			content: '<p>Meatloaf tri-tip kielbasa porchetta, sirloin drumstick bresaola pancetta jowl frankfurter biltong. Pig ball tip tail flank corned beef. Filet mignon drumstick landjaeger, beef ribs tenderloin bresaola corned beef. Sirloin tongue salami porchetta ribeye jowl jerky beef filet mignon meatball picanha shankle bacon. Tri-tip landjaeger t-bone pastrami bresaola biltong prosciutto ham.</p><div class="full-block"><div class="wrapper -code"><code data-type="javascript">config: {<br />	&nbsp;&nbsp;cache: {<br />&nbsp;&nbsp;&nbsp;&nbsp;expiresIn: 60 * 60 * 1000 * 24 * 7,<br />&nbsp;&nbsp;&nbsp;&nbsp;privacy: "private"<br />&nbsp;&nbsp;},<br />&nbsp;&nbsp;cors: {<br />&nbsp;&nbsp;&nbsp;&nbsp;origin: ["https://vanham.io"]<br />&nbsp;&nbsp;}<br />}</code></div></div>',
-			created: '2015-10-01 18:00:00'
-		},
-		{
-			id: '789',
-			path: '/and-yet-another',
-			title: 'And yet another!',
-			intro: 'Brisket strip steak drumstick flank filet mignon pig frankfurter bresaola ball tip. Shankle tail frankfurter salami doner ham hock chuck bresaola t-bone bacon hamburger short ribs pig. Ball tip ham kielbasa, short loin alcatra jerky pig turkey venison shankle doner sirloin. Brisket tenderloin t-bone alcatra, hamburger turkey sirloin shankle cupim.',
-			content: '<p>Beef ribs rump ball tip drumstick, bresaola tail frankfurter chicken turkey porchetta filet mignon kielbasa shoulder fatback. Ham kielbasa short loin, cupim drumstick bresaola hamburger. Capicola frankfurter bresaola rump jerky kevin. Jowl chicken ham hock, pastrami venison andouille tongue chuck prosciutto biltong hamburger pork pork chop.</p>',
-			created: '2015-10-01 18:00:00'
+			id: 'mjouv9o3bl61',
+			path: '/styling-checkboxes',
+			title: 'Styling checkboxes',
+			intro: 'An easy yet not uncommon task the most of us have to deal with is the styling of form elements. In this small post I\'ll show you one of the many possible ways to accomplish this in a clean way.',
+			content: '<i>Note: For this solution we assume you have a <code>&lt;label&gt;</code> element right after the checkbox. If this is not your current situation you might need to add a different element (like <code>&lt;span&gt;</code>) and you can add all the styling for <code>label::before</code> to that element.</i></p><p>The basic HTML as we all know it. Just an ordinary checkbox with its corresponding label. I prefer not using <code>id</code> myself, so I would\'ve wrapped the label around the input field. But since it\'s shorter we use this markup for now.</p><div class="full-block"><div class="wrapper -code"><code data-type="html">&lt;input type=checkbox id=checkbox /&gt;<br />&lt;label for=checkbox&gt;This is a label&lt;/label&gt;</code></div></div><p>For the fake "checkbox" box we add a <a href="https://developer.mozilla.org/en/docs/Web/CSS/Pseudo-elements" target="_blank">pseudo element</a> with <code>::before</code>. This way we can add styling for this box, without the need for an (obsolete) extra element in our HTML.</p><div class="full-block"><div class="wrapper -code"><code data-type="css">label::before {<br />&nbsp;content: \'\';<br />&nbsp;&nbsp;display: inline-block;<br />&nbsp;&nbsp;width: 20px;<br />&nbsp;&nbsp;height: 20px;<br />&nbsp;&nbsp;border: 1px solid #ccc;<br />}</code></div></div><p>Add the <code>checked</code> state to the <code>::after</code> so people can actually see the checkbox is now checked!</p><div class="full-block"><div class="wrapper -code"><code data-type="css">input:checked + label::before {<br />&nbsp;&nbsp;box-shadow: 0 0 0 3px white inset;<br />&nbsp;&nbsp;background-color: green;<br />}</code></div></div><p>Adding a fake checkbox is useless when we still have the real checkbox in sight, so let\'s not forget to hide it. This could be accomplished in two ways. Some browsers don\'t like it when you just use <code>display: none</code>, so depending on the browser support</p><div class="full-block"><div class="wrapper -code"><code data-type="css">input {<br />&nbsp;&nbsp;display: none;<br />}</code></div></div><p>The good samaritans as we are we should not forget to give the user some nice feedback and add this small CSS snippet so the user knows it can click on the label:</p><div class="full-block"><div class="wrapper -code"><code data-type="css">label:hover {<br />&nbsp;&nbsp;cursor: pointer;<br />}</code></div></div><p>And there you go, a nice, easily styled checkbox!</p><p>Of course there are many many other ways you could accomplish this. Wrap the label around the input and add an extra element on which you can apply the styling for <code>label::before</code> for example is one I would normally use to prevent the usage of the <code>id</code> attribute.</p>',
+			created: '2015-12-08 23:37:43'
 		}
 	].reverse();
 
