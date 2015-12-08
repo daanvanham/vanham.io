@@ -3,11 +3,12 @@
 kx.ready(function() {
 	'use strict';
 
-	var error = function(status, response, xhr) {
+	var version = 'v1',
+		endpoint = '/api/' + version + '/blog',
+		error = function(status, response, xhr) {
 			console.error(status, response);
 		},
-		version = 'v1',
-		endpoint = '/api/' + version + '/blog',
+
 		list, detail, blog;
 
 	function load(type, file) {
