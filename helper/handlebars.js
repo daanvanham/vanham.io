@@ -7,11 +7,6 @@ const handlebars = require('handlebars'),
 	cache = {},
 	dependencies = {
 		development: {
-			js: [
-				'./public/js/konflux.js',
-				'./public/js/kontext.js',
-				'./public/js/base.js'
-			],
 			css: [
 				'./public/css/layout.css',
 				'./public/css/site-header.css',
@@ -21,13 +16,13 @@ const handlebars = require('handlebars'),
 				'./public/css/site-footer.css'
 			],
 			js: [
-				'./public/js/ga.js'
+				'./public/js/konflux.js',
+				'./public/js/kontext.js',
+				'./public/js/ga.js',
+				'./public/js/base.js'
 			]
 		},
 		production: {
-			js: [
-				'./public/js/combined.min.js'
-			],
 			css: [
 				'./public/css/combined.min.css'
 			],
