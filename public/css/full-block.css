@@ -1,14 +1,13 @@
 .full-block {
-	width: 107vw;
+	width: 105%;
 	padding: 20px 0;
-	margin: 30px 0 30px -31%;
+	margin: 30px -2.5%;
 	background-color: #ddd;
-	border-top: 1px solid #bbb;
-	border-bottom: 1px solid #bbb;
+	border: 1px solid #bbb;
 }
 
 .full-block .wrapper {
-	width: 50%;
+	width: 70%;
 	margin: 0 auto;
 	box-sizing: border-box;
 }
@@ -28,19 +27,6 @@
 	line-height: 1;
 }
 
-.full-block code[data-type]::before {
-	content: attr(data-type);
-	display: block;
-	width: 100px;
-	padding: 0 3px;
-	margin: -20px 0 20px -20px;
-	border: 1px solid #bbb;
-	border-top: 0;
-	text-align: center;
-	background-color: #eee;
-	border-radius: 0 0 4px 4px;
-}
-
 @media only screen and (max-width: 690px) {
 	.full-block {
 		width: 100vw;
@@ -51,10 +37,5 @@
 	.full-block .wrapper {
 		width: 100%;
 		padding: 0 15px;
-	}
-
-	.full-block code[data-type]::before {
-		margin-top: -10px;
-		margin-left: -5px;
 	}
 }
