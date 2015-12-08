@@ -24,6 +24,16 @@
 			</header>
 
 			<section class=site-content>
+				<section class=blog-list data-kontext="each: blogs">
+					<article class=blog-item>
+						<a data-kontext="attribute: {href: path, 'data-id': id}">
+							<header>{title}</header>
+							<section>{intro}</section>
+							<footer>{created}</footer>
+						</a>
+					</article>
+				</section>
+
 				<section class=blog-list>
 					<article class=blog-item>
 						<section>
