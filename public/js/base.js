@@ -34,7 +34,7 @@ kx.ready(function() {
 
 		event.preventDefault();
 
-		if (!history.state || ('id' in history.state && history.state.id !== id)) {
+		if ((!history.state || ('id' in history.state && history.state.id !== id)) && window.location.pathname === '/') {
 			history.pushState({id: id}, 'test', target.href.replace(window.location.href, ''));
 		}
 
