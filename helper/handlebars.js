@@ -8,6 +8,7 @@ const handlebars = require('handlebars'),
 	dependencies = {
 		development: {
 			css: [
+				'./public/css/prism.css',
 				'./public/css/layout.css',
 				'./public/css/site-header.css',
 				'./public/css/profile-block.css',
@@ -18,6 +19,7 @@ const handlebars = require('handlebars'),
 			js: [
 				'./public/js/konflux.js',
 				'./public/js/kontext.js',
+				'./public/js/prism.js',
 				'./public/js/ga.js',
 				'./public/js/base.js'
 			]

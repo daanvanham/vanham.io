@@ -1,5 +1,5 @@
 /* jshint browser:true */
-/* global kx, kontext */
+/* global kx, kontext, Prism */
 kx.ready(function() {
 	'use strict';
 
@@ -54,6 +54,10 @@ kx.ready(function() {
 
 				detail.style.display = 'block';
 				list.style.display = 'none';
+
+				setTimeout(function() {
+					Prism.highlightAll();
+				}, 50);
 
 				window.scroll(0, 0);
 			},
