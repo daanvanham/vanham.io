@@ -1,6 +1,6 @@
 _Note: For this solution we assume you have a `<label>` element right after the checkbox. If this is not your current situation you might need to add a different element (like `<span>`) and you can add all the styling for `label::before` to that element._
 
-The basic HTML as we all know it. Just an ordinary checkbox with its corresponding label. I prefer not using `id` myself, so I would\'ve wrapped the label around the input field. But since it\'s shorter we use this markup for now.
+The basic HTML as we all know it. Just an ordinary checkbox with its corresponding label. I prefer not using `id` myself, so I would've wrapped the label around the input field. But since it's shorter we use this markup for now.
 
 ```html
 <input type=checkbox id=checkbox />
@@ -28,7 +28,7 @@ input:checked + label::before {
 }
 ```
 
-Adding a fake checkbox is useless when we still have the real checkbox in sight, so let\'s not forget to hide it. This could be accomplished in two ways. Some browsers don\'t like it when you just use `display: none`, so depending on the browser support you might have to hide it with `position: absolute` and an absurd position.
+Adding a fake checkbox is useless when we still have the real checkbox in sight, so let's not forget to hide it. This could be accomplished in two ways. Some browsers don't like it when you just use `display: none`, so depending on the browser support you might have to hide it with `position: absolute` and an absurd position.
 
 ```css
 input {
@@ -45,6 +45,6 @@ label:hover {
 }
 ```
 
-And there you go, a nice, easily stylable checkbox! Don\'t forget to make it pretty though!
+And there you go, a nice, easily stylable checkbox! Don't forget to make it pretty though!
 
 Of course there are many many other ways you could accomplish this. Wrap the label around the input and add an extra element on which you can apply the styling for `label::before` for example is one I would normally use to prevent the usage of the `id` attribute.
