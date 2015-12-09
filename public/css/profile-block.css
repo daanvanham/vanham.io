@@ -69,6 +69,11 @@
 
 
 @media only screen and (max-width: 690px) {
+	.-small .profile-block > a {
+		bottom: -10px;
+		left: 0;
+	}
+
 	.profile-block {
 		position: absolute;
 		width: 95%;
@@ -84,8 +89,13 @@
 	}
 
 	.profile-block .name {
+		margin-top: 45px;
 		font-size: 1.4em;
 		line-height: 1.6em;
+	}
+
+	.profile-block .function {
+		margin-top: 51px;
 	}
 }
 
@@ -97,6 +107,10 @@
 	.profile-block .name {
 		font-size: 1em;
 		line-height: 2.2em;
+	}
+
+	.profile-block .function {
+		margin-top: 50px;
 	}
 }
 
