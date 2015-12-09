@@ -1,15 +1,16 @@
 .profile-block {
 	position: absolute;
-	bottom: -80px;
+	bottom: -90px;
 	left: 50%;
 	width: 75%;
-	margin-left: -40%;
+	margin-left: -42%;
 }
 
 .profile-block .picture {
 	display: inline-block;
-	width: 175px;
-	height: 175px;
+	width: 212px;
+	height: 212px;
+	margin-top: -25px;
 	border-radius: 50%;
 	overflow: hidden;
 	border: 5px solid #fff;
@@ -17,13 +18,14 @@
 	background-size: contain;
 	-webkit-filter: grayscale(100%);
 	filter: grayscale(100%);
-	transition: filter ease .3s, transform ease .2s;
+	transform: scale(.8);
+	transition: transform ease .2s;
 }
 
 .profile-block .picture:hover {
 	-webkit-filter: none;
 	filter: none;
-	transform: scale(1.2);
+	transform: scale(1);
 }
 
 .profile-block span {
@@ -37,7 +39,7 @@
 	font-size: 1.7em;
 	border-right: 2px solid #fff;
 	padding-right: 10px;
-	margin: 70px 6px 0 15px;
+	margin: 70px 6px 0 0;
 	line-height: 1.2em;
 }
 
