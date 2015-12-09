@@ -114,6 +114,15 @@ kx.ready(function() {
 		});
 	});
 
+	kx.event.add('.profile-block a', 'click', function(event) {
+		event.preventDefault();
+
+		list.style.display = 'block';
+		detail.style.display = 'none';
+
+		kx.style.removeClass(document.querySelector('.site-header'), '-small');
+	});
+
 	kx.event.add('.site-content', 'click', '.blog-item.-detail a:not([target])', function(event) {
 		var fqdn    = /(?:[a-z]+:)?\/\/(?:[a-z0-9_-]+\.)?([a-z][a-z0-9_-]+\.[a-z]{2,6})(?:\/.*)?|\/.*|javascript:.*/i,
 			link    = this.href.match(fqdn),
