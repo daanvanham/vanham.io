@@ -28,7 +28,8 @@
 }
 
 @media only screen and (max-width: 690px) {
-	.site-header {
+	.site-header,
+	.site-header.-small {
 		height: auto;
 		transition: none;
 	}
