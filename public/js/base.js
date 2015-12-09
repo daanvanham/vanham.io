@@ -120,6 +120,8 @@ kx.ready(function() {
 		list.style.display = 'block';
 		detail.style.display = 'none';
 
+		history.pushState(null, '', '/');
+
 		kx.style.removeClass(document.querySelector('.site-header'), '-small');
 	});
 
