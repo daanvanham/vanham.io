@@ -127,4 +127,14 @@ kx.ready(function() {
 
 		template.innerHTML = model[key];
 	});
+
+	kx.event.add('.site-content', 'click', '.blog-item.-detail a:not([target])', function(event) {
+		var fqdn    = /(?:[a-z]+:)?\/\/(?:[a-z0-9_-]+\.)?([a-z][a-z0-9_-]+\.[a-z]{2,6})(?:\/.*)?|\/.*|javascript:.*/i,
+			link    = this.href.match(fqdn),
+			current = window.location.href.match(fqdn);
+
+		if (link && link.length > 1 && current && current.length > 1 && link[1] !== current[1] && window.open(this.href)) {
+			event.preventDefault();
+		}
+	});
 });
