@@ -24,9 +24,9 @@ const Wanted = require('wanted'),
 			fs.readFile(__dirname + '/gulp/config/devour.json', (error, data) => {
 				new Devour(hjson.parse(String(data)))
 					.task('clean')
-					.task('html',       ['./public/html/**/*.html', '!./public/html/**/*.min.html'])
-					.task('script',     ['./public/js/**/*.js', '!./public/js/combined.min.js'])
-					.task('style',      ['./public/css/**/*.css', '!./public/css/combined.min.css'])
+					.task('html', ['./public/html/**/*.html', '!./public/html/**/*.min.html'])
+					.task('script', ['./public/js/**/*.js', '!./public/js/combined.min.js', '!./public/js/vendor/*.js'])
+					.task('style', ['./public/css/**/*.css', '!./public/css/combined.min.css'])
 					.start();
 			});
 		})
