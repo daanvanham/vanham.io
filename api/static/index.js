@@ -15,6 +15,10 @@ exports.register = (server, options, next) => {
 				path.push(file[file.length - 1]);
 			}
 
+			if (type === 'map') {
+				path.push(file[file.length - 2]);
+			}
+
 			if (request.params.spoiler === 'img') {
 				// if img and cache spoiler is missing just return the image
 				request.params.path = 'img/' + request.params.path;
