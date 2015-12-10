@@ -6,28 +6,7 @@ kx.ready(function() {
 	var version = 'v1',
 		endpoint = '/api/' + version + '/blog',
 		cache = {},
-		error = function(status, response, xhr) {
-			console.error(status, response);
-		},
-
 		list, detail, blog;
-
-	function load(type, file) {
-		switch (type) {
-			case 'script':
-				var script = document.createElement('script');
-				script.src = file;
-				document.body.appendChild(script);
-				break;
-
-			case 'style':
-				var style = document.createElement('link');
-				style.rel = 'stylesheet';
-				style.href = file;
-				document.head.appendChild(style);
-				break;
-		}
-	}
 
 	function show(model) {
 		if (!blog) {
@@ -71,24 +50,19 @@ kx.ready(function() {
 					if (window.location.pathname !== '/' && (anchor = document.querySelector('a[href="' + window.location.pathname + '"]')) === null) {
 						history.replaceState(null, '', '/');
 						window.location.href = '/404';
+
+						return;
 					}
 
-					if (anchor) {
+					setTimeout(function() {
 						anchor.click();
-						list.style.display = 'none';
-					}
-				},
-
-				error: error
+					}, 100);
+				}
 			});
-		},
-
-		error: function(status, response, xhr) {
-
 		}
 	});
 
-	kx.event.add('.site-content', 'click', '.blog-item a', function(event) {
+	kx.event.add('.site-content', 'click', '.blog-item:not(.-detail) a', function(event) {
 		var target = this,
 			id = target.attributes['data-id'].value;
 
@@ -108,9 +82,7 @@ kx.ready(function() {
 				cache[id] = Object.create(response.result);
 
 				show(response.result);
-			},
-
-			error: error
+			}
 		});
 	});
 
