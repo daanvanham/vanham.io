@@ -50,6 +50,10 @@
 	display: none;
 }
 
+[data-state=small] .profile-block > a {
+	display: block;
+}
+
 .profile-block > a::before {
 	content: '';
 	display: inline-block;

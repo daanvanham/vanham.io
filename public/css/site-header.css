@@ -10,7 +10,7 @@
 	transition: height ease .2s;
 }
 
-.site-header.-small {
+.site-header[data-state=small] {
 	height: 250px;
 	background-position: center center;
 }
@@ -29,7 +29,7 @@
 
 @media only screen and (max-width: 690px) {
 	.site-header,
-	.site-header.-small {
+	.site-header[data-state=small] {
 		height: auto;
 		transition: none;
 	}
