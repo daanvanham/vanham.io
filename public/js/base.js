@@ -6,17 +6,17 @@ kx.ready(function() {
 	var version = 'v1',
 		endpoint = '/api/' + version + '/blog',
 		cache = {},
-		list, detail, blog;
+		blog;
 
 	function view(type) {
-		detail.style.display = type === 'detail' ? 'block' : 'none';
-		list.style.display = type === 'list' ? 'block' : 'none';
-		document.querySelector('.profile-block > a').style.display = type === 'detail' ? 'block' : 'none';
+		document.querySelector('.site-header').setAttribute('data-state', type === 'detail' ? 'small' : '');
+		document.querySelector('.blog-item[data-view="detail"]').style.display = type === 'detail' ? 'block' : 'none';
+		document.querySelector('.blog-list').style.display = type === 'list' ? 'block' : 'none';
 	}
 
 	function show(model) {
 		if (!blog) {
-			blog = kontext.bind(model, detail);
+			blog = kontext.bind(model, document.querySelector('.blog-item[data-view="detail"]'));
 		}
 		else {
 			Object.keys(model).forEach(function(key) {
@@ -29,17 +29,12 @@ kx.ready(function() {
 		setTimeout(function() {
 			Prism.highlightAll();
 		}, 50);
-
-		window.scroll(0, 0);
 	}
 
 	kx.ajax.get({
 		url: '/template/detail',
 		success: function(status, response, xhr) {
 			document.querySelector('.site-content').innerHTML += response;
-
-			list = document.querySelector('.blog-list');
-			detail = document.querySelector('.blog-item[data-view="detail"]');
 
 			view('list');
 
@@ -48,7 +43,7 @@ kx.ready(function() {
 				success: function(status, response, xhr) {
 					var anchor;
 
-					kontext.bind({blogs: response.result}, list);
+					kontext.bind({blogs: response.result}, document.querySelector('.blog-list'));
 
 					if (window.location.pathname !== '/' && (anchor = document.querySelector('a[href="' + window.location.pathname + '"]')) === null) {
 						history.replaceState(null, '', '/');
