@@ -3,7 +3,6 @@
 module.exports = (stream, devour) => {
 	return stream
 		.pipe(devour.plugin('sourcemaps').init())
-		.pipe(devour.write('./js'))
 		.pipe(devour.pipe('combine', 'js'))
 		.pipe(devour.plugin('uglify'))
 		.pipe(devour.pipe('selector', 'js'))
