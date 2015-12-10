@@ -8,6 +8,12 @@ kx.ready(function() {
 		cache = {},
 		list, detail, blog;
 
+	function view(type) {
+		detail.style.display = type === 'detail' ? 'block' : 'none';
+		list.style.display = type === 'list' ? 'block' : 'none';
+		document.querySelector('.profile-block > a').style.display = type === 'detail' ? 'block' : 'none';
+	}
+
 	function show(model) {
 		if (!blog) {
 			blog = kontext.bind(model, detail);
@@ -18,8 +24,7 @@ kx.ready(function() {
 			});
 		}
 
-		detail.style.display = 'block';
-		list.style.display = 'none';
+		view('detail');
 
 		setTimeout(function() {
 			Prism.highlightAll();
@@ -36,7 +41,7 @@ kx.ready(function() {
 			list = document.querySelector('.blog-list');
 			detail = document.querySelector('.blog-item[data-view="detail"]');
 
-			detail.style.display = 'none';
+			view('list');
 
 			kx.ajax.get({
 				url: endpoint,
@@ -89,8 +94,7 @@ kx.ready(function() {
 	kx.event.add('.profile-block a', 'click', function(event) {
 		event.preventDefault();
 
-		list.style.display = 'block';
-		detail.style.display = 'none';
+		view('list');
 
 		history.pushState(null, '', '/');
 	});
@@ -107,10 +111,7 @@ kx.ready(function() {
 
 	window.onpopstate = function(event) {
 		if (!event.state || typeof event.state !== 'object' || !('id' in event.state)) {
-			list.style.display = 'block';
-			detail.style.display = 'none';
-
-			return true;
+			return view('list');
 		}
 
 		return document.querySelector('.blog-item a[data-id="' + event.state.id + '"]').click();
