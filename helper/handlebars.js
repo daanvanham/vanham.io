@@ -17,9 +17,9 @@ const handlebars = require('handlebars'),
 				'./public/css/site-footer.css'
 			],
 			js: [
-				'./public/js/konflux.js',
-				'./public/js/kontext.js',
-				'./public/js/prism.js',
+				'./public/js/vendor/konflux.js',
+				'./public/js/vendor/kontext.js',
+				'./public/js/vendor/prism.js',
 				'./public/js/ga.js',
 				'./public/js/base.js'
 			]
@@ -29,6 +29,9 @@ const handlebars = require('handlebars'),
 				'./public/css/combined.min.css'
 			],
 			js: [
+				'./public/js/vendor/konflux.min.js',
+				'./public/js/vendor/kontext.min.js',
+				'./public/js/vendor/prism.min.js',
 				'./public/js/combined.min.js'
 			]
 		}
@@ -41,7 +44,7 @@ function createTag(type, path) {
 		(type === 'js' ? 'src' : 'href') + '=' + path.replace(/\.\/public\/(?:cs|j)s/, '/static/' + cache[path].spoiler)
 	];
 
-	if (process.env.NODE_ENV === 'production' && type === 'js') {
+	if (process.env.NODE_ENV === 'production' && type === 'js' && !/vendor/.test(path)) {
 		tag.push('async');
 	}
 
