@@ -15,11 +15,11 @@ module.exports = (stream, devour, type) => {
 			break;
 
 		case 'css':
-			regex = /(\.[a-z0-9- .]+)(?:[a-z>\[\]: -]+)?{/g;
+			regex = /(\.[a-z0-9- .]+)(?:[a-z>\[\]\(\):=" -]+)?{/g;
 			break;
 
 		case 'js':
-			regex = /(?:'|")(\.[a-z0-9- .]+)(?:[a-z\[\].=-]+)?(?:'|")/g;
+			regex = /(?:'|")(\.[a-z0-9- .]+)(?:[a-z\[\]\(\).=: -]+)?(?:'|")/g;
 			break;
 	}
 
