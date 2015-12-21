@@ -24,22 +24,20 @@
 			</div>
 		</header>
 
-		<section>
-			<section class=blog-list data-kontext="each: blogs">
-				<article class=blog-item>
-					<a data-kontext="attribute: {href: path, 'data-id': id}">
-						<header>{title}</header>
-						<section>{intro}</section>
-						<footer>{created}</footer>
-					</a>
-				</article>
-			</section>
+		<section data-kontext="each: blogs">
+			<article>
+				<a data-kontext="attribute: {href: path, 'data-id': id}">
+					<header>{title}</header>
+					<section>{intro}</section>
+					<footer>{created}</footer>
+				</a>
+			</article>
 		</section>
 
 		<footer>
-			<a href=https://github.com/daanvanham class="icon -github" target=_blank></a>
-			<a href=https://twitter.com/daanvanham class="icon -twitter" target=_blank></a>
-			<a href=https://instagram.com/daanvanham class="icon -instagram" target=_blank></a>
+			<a href=https://github.com/daanvanham class="github" target=_blank></a>
+			<a href=https://twitter.com/daanvanham class="twitter" target=_blank></a>
+			<a href=https://instagram.com/daanvanham class="instagram" target=_blank></a>
 		</footer>
 
 		{{{js}}}

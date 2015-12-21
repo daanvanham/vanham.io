@@ -1,53 +1,56 @@
-.blog-item {
+article {
 	margin: 0 30px 30px;
 	padding-bottom: 30px;
 	border-bottom: 2px solid #2c3e50;
 }
 
-.blog-item:not([data-view=detail]) a {
+article:not([data-view=detail]) a {
 	display: block;
 	padding: 10px 15px;
 	transition: background ease .1s;
 }
 
-.blog-item:not([data-view=detail]) a:hover {
+article:not([data-view=detail]) a:hover {
 	background-color: #f5f5f5;
 }
 
-.blog-item:last-child {
+article:last-child {
 	margin-bottom: 0;
 	padding-bottom: 0;
 	border-bottom: 0;
 }
 
-.blog-item header {
+article header {
 	font-size: 2em;
 	line-height: 1.5em;
 }
 
-.blog-item section {
+article section {
 	margin: 10px 0;
 }
 
-.blog-item footer {
+article footer {
 	font-size: .9em;
 	font-style: italic;
 }
 
-.blog-item footer::before {
+article footer::before {
 	content: '-- ';
 }
 
-.blog-item[data-view=detail] {
+article[data-view=detail] {
+	display: none;
+	margin: 65px auto 20px;
 	padding: 10px 15px;
+	border-bottom: 0;
 }
 
-.blog-item[data-view=detail] a {
+article[data-view=detail] a {
 	position: relative;
 	color: #D7184C;
 }
 
-.blog-item[data-view=detail] a::after {
+article[data-view=detail] a::after {
 	content: '';
 	position: absolute;
 	top: 100%;
@@ -59,21 +62,21 @@
 	transition: transform ease .1s;
 }
 
-.blog-item[data-view=detail] a:hover {
+article[data-view=detail] a:hover {
 	color: #F84B4C;
 }
 
-.blog-item[data-view=detail] a:hover::after {
+article[data-view=detail] a:hover::after {
 	transform: scale(1);
 }
 
 @media only screen and (max-width: 690px) {
-	.blog-item {
+	article {
 		margin-right: 0;
 		margin-left: 0;
 	}
 
-	.blog-item a:hover {
+	article a:hover {
 		background-color: transparent;
 	}
 }

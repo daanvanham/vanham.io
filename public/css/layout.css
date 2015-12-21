@@ -16,6 +16,7 @@ a {
 	outline: none;
 }
 
+body > article,
 body > section {
 	width: 75%;
 	min-height: 150px;
@@ -24,7 +25,8 @@ body > section {
 }
 
 @media only screen and (max-width: 690px) {
-	.site-content {
+	body > article,
+	body > section {
 		width: 100%;
 		padding-top: 40px;
 	}

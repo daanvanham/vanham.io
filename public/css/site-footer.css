@@ -5,7 +5,7 @@ body > footer {
 	text-align: center;
 }
 
-body > footer .icon {
+body > footer > a {
 	display: inline-block;
 	width: 30px;
 	height: 30px;
@@ -16,20 +16,20 @@ body > footer .icon {
 	transition: opacity ease .2s, transform ease .1s;
 }
 
-body > footer .icon:hover {
+body > footer > a:hover {
 	opacity: .8;
 	transform: scale(1.15);
 }
 
-body > footer .icon.-github {
+body > footer > a.-github {
 	background-image: url(/static/img/octocat.svg);
 }
 
-body > footer .icon.-twitter {
+body > footer > a.-twitter {
 	background-image: url(/static/img/twitter.svg);
 }
 
-body > footer .icon.-instagram {
+body > footer > a.-instagram {
 	background-image: url(/static/img/instagram.svg);
 	background-size: 95%;
 }
