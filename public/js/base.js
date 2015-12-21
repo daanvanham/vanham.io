@@ -9,7 +9,7 @@ kx.ready(function() {
 		blog;
 
 	function view(type) {
-		document.querySelector('.site-header').setAttribute('data-state', type === 'detail' ? 'small' : '');
+		document.querySelector('body > header').setAttribute('data-state', type === 'detail' ? 'small' : '');
 		document.querySelector('.blog-item[data-view="detail"]').style.display = type === 'detail' ? 'block' : 'none';
 		document.querySelector('.blog-list').style.display = type === 'list' ? 'block' : 'none';
 	}
@@ -34,7 +34,7 @@ kx.ready(function() {
 	kx.ajax.get({
 		url: '/template/detail',
 		success: function(status, response, xhr) {
-			document.querySelector('.site-content').innerHTML += response;
+			document.querySelector('body > section').innerHTML += response;
 
 			view('list');
 
@@ -62,7 +62,7 @@ kx.ready(function() {
 		}
 	});
 
-	kx.event.add('.site-content', 'click', '.blog-item:not([data-view="detail"]) a', function(event) {
+	kx.event.add('body > section', 'click', '.blog-item:not([data-view="detail"]) a', function(event) {
 		var target = this,
 			id = target.attributes['data-id'].value;
 
@@ -94,7 +94,7 @@ kx.ready(function() {
 		history.pushState(null, '', '/');
 	});
 
-	kx.event.add('.site-content', 'click', '.blog-item[data-view="detail"] a:not([target])', function(event) {
+	kx.event.add('body > section', 'click', '.blog-item[data-view="detail"] a:not([target])', function(event) {
 		var fqdn    = /(?:[a-z]+:)?\/\/(?:[a-z0-9_-]+\.)?([a-z][a-z0-9_-]+\.[a-z]{2,6})(?:\/.*)?|\/.*|javascript:.*/i,
 			link    = this.href.match(fqdn),
 			current = window.location.href.match(fqdn);

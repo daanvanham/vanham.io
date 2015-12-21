@@ -16,7 +16,7 @@ a {
 	outline: none;
 }
 
-.site-content {
+body > section {
 	width: 75%;
 	min-height: 150px;
 	margin: 0 auto;

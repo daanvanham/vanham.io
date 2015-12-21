@@ -1,11 +1,11 @@
-.site-footer {
+body > footer {
 	margin: 0 20px;
 	padding: 20px;
 	border-top: 1px solid #ccc;
 	text-align: center;
 }
 
-.site-footer .icon {
+body > footer .icon {
 	display: inline-block;
 	width: 30px;
 	height: 30px;
@@ -16,20 +16,20 @@
 	transition: opacity ease .2s, transform ease .1s;
 }
 
-.site-footer .icon:hover {
+body > footer .icon:hover {
 	opacity: .8;
 	transform: scale(1.15);
 }
 
-.site-footer .icon.-github {
+body > footer .icon.-github {
 	background-image: url(/static/img/octocat.svg);
 }
 
-.site-footer .icon.-twitter {
+body > footer .icon.-twitter {
 	background-image: url(/static/img/twitter.svg);
 }
 
-.site-footer .icon.-instagram {
+body > footer .icon.-instagram {
 	background-image: url(/static/img/instagram.svg);
 	background-size: 95%;
 }

@@ -11,40 +11,36 @@
 	</head>
 
 	<body>
-		<main>
-			<header class=site-header>
-				<div class=wrapper>
-					<section class=profile-block>
-						<div class=picture></div>
+		<header>
+			<div>
+				<section class=profile-block>
+					<div class=picture></div>
 
-						<span class=name>Daan van Ham</span>
-						<span class=function>Developer</span>
+					<span class=name>Daan van Ham</span>
+					<span class=function>Developer</span>
 
-						<a href="/">back</a>
-					</section>
-				</div>
-			</header>
-
-			<section class=site-content>
-				<section class=blog-list data-kontext="each: blogs">
-					<article class=blog-item>
-						<a data-kontext="attribute: {href: path, 'data-id': id}">
-							<header>{title}</header>
-							<section>{intro}</section>
-							<footer>{created}</footer>
-						</a>
-					</article>
+					<a href="/">back</a>
 				</section>
-			</section>
+			</div>
+		</header>
 
-			<footer class=site-footer>
-				<div class=wrapper>
-					<a href=https://github.com/daanvanham class="icon -github" target=_blank></a>
-					<a href=https://twitter.com/daanvanham class="icon -twitter" target=_blank></a>
-					<a href=https://instagram.com/daanvanham class="icon -instagram" target=_blank></a>
-				</div>
-			</footer>
-		</main>
+		<section>
+			<section class=blog-list data-kontext="each: blogs">
+				<article class=blog-item>
+					<a data-kontext="attribute: {href: path, 'data-id': id}">
+						<header>{title}</header>
+						<section>{intro}</section>
+						<footer>{created}</footer>
+					</a>
+				</article>
+			</section>
+		</section>
+
+		<footer>
+			<a href=https://github.com/daanvanham class="icon -github" target=_blank></a>
+			<a href=https://twitter.com/daanvanham class="icon -twitter" target=_blank></a>
+			<a href=https://instagram.com/daanvanham class="icon -instagram" target=_blank></a>
+		</footer>
 
 		{{{js}}}
 	</body>
