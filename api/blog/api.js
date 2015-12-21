@@ -25,13 +25,22 @@ function API() {
 	api.fetch = function fetch(request, reply) {
 		var result;
 
-		dummy.forEach(function(item) {
-			if (item.id === request.params.id) {
-				result = item;
-			}
-		});
+		if (/^[a-zA-Z0-9]{12}$/.test(request.params.id)) {
+			result = dummy.filter(function(item) {
+				return item.id === request.params.id;
+			}).shift();
+		}
+		else {
+			result = dummy.filter(function(item) {
+				return item.path === '/' + request.params.id;
+			}).shift();
+		}
 
-		return status.ok(reply, result);
+		if (result) {
+			return status.ok(reply, result);
+		}
+
+		return status.notFound(reply);
 	};
 }
 
