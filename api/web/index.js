@@ -25,6 +25,12 @@ exports.register = (server, options, next) => {
 
 	server.route({
 		method: 'GET',
+		path: '/this-is-not-the-webpage-you-are-looking-for',
+		handler: handler('404')
+	});
+
+	server.route({
+		method: 'GET',
 		path: '/{friendlyURL}',
 		handler: handler('base')
 	});

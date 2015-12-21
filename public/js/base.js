@@ -47,7 +47,7 @@ kx.ready(function() {
 
 					if (window.location.pathname !== '/' && (anchor = document.querySelector('a[href="' + window.location.pathname + '"]')) === null) {
 						history.replaceState(null, '', '/');
-						window.location.href = '/404';
+						window.location.href = '/this-is-not-the-webpage-you-are-looking-for';
 
 						return;
 					}
