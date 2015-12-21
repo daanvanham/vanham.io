@@ -9,14 +9,12 @@ kx.ready(function() {
 		blog;
 
 	function view(type) {
-		document.querySelector('body > header').setAttribute('data-state', type === 'detail' ? 'small' : '');
-		document.querySelector('.blog-item[data-view="detail"]').style.display = type === 'detail' ? 'block' : 'none';
-		document.querySelector('.blog-list').style.display = type === 'list' ? 'block' : 'none';
+		document.body.setAttribute('data-state', type === 'detail' ? 'small' : '');
 	}
 
 	function show(model) {
 		if (!blog) {
-			blog = kontext.bind(model, document.querySelector('.blog-item[data-view="detail"]'));
+			blog = kontext.bind(model, document.querySelector('[data-view="detail"]'));
 		}
 		else {
 			Object.keys(model).forEach(function(key) {
@@ -34,7 +32,9 @@ kx.ready(function() {
 	kx.ajax.get({
 		url: '/template/detail',
 		success: function(status, response, xhr) {
-			document.querySelector('body > section').innerHTML += response;
+			var fragment = document.createElement('template');
+			fragment.innerHTML = response;
+			document.body.insertBefore(fragment.content, document.querySelector('body > footer'));
 
 			view('list');
 
@@ -43,7 +43,7 @@ kx.ready(function() {
 				success: function(status, response, xhr) {
 					var anchor;
 
-					kontext.bind({blogs: response.result}, document.querySelector('.blog-list'));
+					kontext.bind({blogs: response.result}, document.querySelector('body > section'));
 
 					if (window.location.pathname !== '/' && (anchor = document.querySelector('a[href="' + window.location.pathname + '"]')) === null) {
 						history.replaceState(null, '', '/');
@@ -62,9 +62,9 @@ kx.ready(function() {
 		}
 	});
 
-	kx.event.add('body > section', 'click', '.blog-item:not([data-view="detail"]) a', function(event) {
+	kx.event.add('body > section', 'click', 'article a', function(event) {
 		var target = this,
-			id = target.attributes['data-id'].value;
+			id = target.getAttribute('data-id');
 
 		event.preventDefault();
 
@@ -86,7 +86,7 @@ kx.ready(function() {
 		});
 	});
 
-	kx.event.add('.profile-block a', 'click', function(event) {
+	kx.event.add('body > header a', 'click', function(event) {
 		event.preventDefault();
 
 		view('list');
@@ -94,7 +94,7 @@ kx.ready(function() {
 		history.pushState(null, '', '/');
 	});
 
-	kx.event.add('body > section', 'click', '.blog-item[data-view="detail"] a:not([target])', function(event) {
+	kx.event.add('body', 'click', '[data-view="detail"] a:not([target])', function(event) {
 		var fqdn    = /(?:[a-z]+:)?\/\/(?:[a-z0-9_-]+\.)?([a-z][a-z0-9_-]+\.[a-z]{2,6})(?:\/.*)?|\/.*|javascript:.*/i,
 			link    = this.href.match(fqdn),
 			current = window.location.href.match(fqdn);
@@ -109,6 +109,6 @@ kx.ready(function() {
 			return view('list');
 		}
 
-		return document.querySelector('.blog-item a[data-id="' + event.state.id + '"]').click();
+		return document.querySelector('article a[data-id="' + event.state.id + '"]').click();
 	};
 });
