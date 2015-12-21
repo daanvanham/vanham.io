@@ -10,7 +10,7 @@ body > header {
 	transition: height ease .2s;
 }
 
-body > header[data-state=small] {
+body[data-state=small] > header {
 	height: 250px;
 	background-position: center center;
 }
@@ -29,7 +29,7 @@ body > header > div {
 
 @media only screen and (max-width: 690px) {
 	body > header,
-	body > header[data-state=small] {
+	body[data-state=small] > header {
 		height: auto;
 		transition: none;
 	}

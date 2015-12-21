@@ -22,6 +22,15 @@ body > section {
 	min-height: 150px;
 	margin: 0 auto;
 	padding: 85px 0 50px;
+	box-sizing: border-box;
+}
+
+[data-state=small] > section {
+	display: none;
+}
+
+[data-state=small] > article {
+	display: block;
 }
 
 @media only screen and (max-width: 690px) {

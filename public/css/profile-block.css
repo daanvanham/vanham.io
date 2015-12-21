@@ -68,7 +68,7 @@
 }
 
 @media only screen and (max-width: 690px) {
-	.-small .profile-block > a {
+	[data-state=small] .profile-block > a {
 		bottom: -10px;
 		left: 0;
 	}
