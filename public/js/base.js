@@ -12,6 +12,26 @@ kx.ready(function() {
 		document.body.setAttribute('data-state', type === 'detail' ? 'small' : '');
 	}
 
+	function loadList() {
+		kx.ajax.get({
+			url: endpoint,
+			success: function(status, response) {
+				var anchor;
+
+				kontext.bind({blogs: response.result}, document.querySelector('body > section'));
+			}
+		});
+	}
+
+	function error(status, response) {
+		if (status === 404) {
+			history.replaceState(null, '', '/');
+			window.location.href = '/this-is-not-the-webpage-you-are-looking-for';
+
+			return;
+		}
+	}
+
 	function show(model) {
 		if (!blog) {
 			blog = kontext.bind(model, document.querySelector('[data-view="detail"]'));
@@ -29,38 +49,21 @@ kx.ready(function() {
 		}, 50);
 	}
 
-	kx.ajax.get({
-		url: '/template/detail',
-		success: function(status, response, xhr) {
-			var fragment = document.createElement('template');
-			fragment.innerHTML = response;
-			document.body.insertBefore(fragment.content, document.querySelector('body > footer'));
+	if (window.location.pathname === '/') {
+		view('list');
+		loadList();
+	}
+	else {
+		kx.ajax.get({
+			url: endpoint + window.location.pathname,
+			success: function(status, response) {
+				show(response.result);
+				loadList();
+			},
 
-			view('list');
-
-			kx.ajax.get({
-				url: endpoint,
-				success: function(status, response, xhr) {
-					var anchor;
-
-					kontext.bind({blogs: response.result}, document.querySelector('body > section'));
-
-					if (window.location.pathname !== '/' && (anchor = document.querySelector('a[href="' + window.location.pathname + '"]')) === null) {
-						history.replaceState(null, '', '/');
-						window.location.href = '/this-is-not-the-webpage-you-are-looking-for';
-
-						return;
-					}
-
-					if (anchor) {
-						setTimeout(function() {
-							anchor.click();
-						}, 100);
-					}
-				}
-			});
-		}
-	});
+			error: error
+		});
+	}
 
 	kx.event.add('body > section', 'click', 'article a', function(event) {
 		var target = this,
@@ -69,7 +72,7 @@ kx.ready(function() {
 		event.preventDefault();
 
 		if ((!history.state || ('id' in history.state && history.state.id !== id)) && window.location.pathname === '/') {
-			history.pushState({id: id}, 'test', target.href.replace(window.location.href, ''));
+			history.pushState({id: id}, '', target.href.replace(window.location.href, ''));
 		}
 
 		if (id in cache) {
@@ -78,11 +81,13 @@ kx.ready(function() {
 
 		kx.ajax.get({
 			url: endpoint + '/' + id,
-			success: function(status, response, xhr) {
+			success: function(status, response) {
 				cache[id] = Object.create(response.result);
 
 				show(response.result);
-			}
+			},
+
+			error: error
 		});
 	});
 
