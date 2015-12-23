@@ -44,7 +44,7 @@ function createTag(type, path) {
 		(type === 'js' ? 'src' : 'href') + '=' + path.replace(/\.\/public\/(?:cs|j)s/, '/static/' + cache[path].spoiler)
 	];
 
-	if (process.env.NODE_ENV === 'production' && type === 'js' && !/vendor/.test(path)) {
+	if (process.env.NODE_ENV === 'production' && type === 'js' && !/konflux/.test(path)) {
 		tag.push('async');
 	}
 
