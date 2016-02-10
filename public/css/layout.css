@@ -29,7 +29,7 @@ body > section {
 	display: none;
 }
 
-[data-state=small] > article {
+[data-state=small] > article[data-view=detail] {
 	display: block;
 }
 
