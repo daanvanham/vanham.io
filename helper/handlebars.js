@@ -13,7 +13,6 @@ const handlebars = require('handlebars'),
 				'./public/css/site-header.css',
 				'./public/css/profile-block.css',
 				'./public/css/blog-item.css',
-				'./public/css/full-block.css',
 				'./public/css/site-footer.css'
 			],
 			js: [
