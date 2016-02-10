@@ -3,7 +3,7 @@
 
 	"priority": [
 		"konflux.js",
-		"knot.js",
+		"kontext.js",
 		"base.js"
 	]
 }
