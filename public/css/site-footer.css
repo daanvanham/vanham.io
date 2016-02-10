@@ -18,10 +18,11 @@ body > footer > a {
 
 body > footer > a:hover {
 	opacity: .8;
-	transform: scale(1.15) translateY(-8px);
+	transform: scale(1.15);
 }
 
 body > footer  svg {
 	display: inline-block;
 	max-width: 100%;
+	max-height: 100%;
 }
