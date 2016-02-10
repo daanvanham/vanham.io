@@ -18,7 +18,8 @@
 			{"blankie":{
 				"reportUri": "/api/v1/report/csp",
 				"scriptSrc": ["self", "www.google-analytics.com"],
-				"imgSrc": ["self", "www.google-analytics.com", "data:"]
+				"imgSrc": ["self", "www.google-analytics.com", "data:"],
+				"defaultSrc": ["self"]
 			}}
 		]
 	},
