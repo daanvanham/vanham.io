@@ -18,18 +18,10 @@ body > footer > a {
 
 body > footer > a:hover {
 	opacity: .8;
-	transform: scale(1.15);
+	transform: scale(1.15) translateY(-8px);
 }
 
-body > footer > a.-github {
-	background-image: url(/static/img/octocat.svg);
-}
-
-body > footer > a.-twitter {
-	background-image: url(/static/img/twitter.svg);
-}
-
-body > footer > a.-instagram {
-	background-image: url(/static/img/instagram.svg);
-	background-size: 95%;
+body > footer  svg {
+	display: inline-block;
+	max-width: 100%;
 }
