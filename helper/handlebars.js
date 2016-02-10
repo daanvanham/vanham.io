@@ -19,6 +19,7 @@ const handlebars = require('handlebars'),
 				'./public/js/vendor/konflux.js',
 				'./public/js/vendor/kontext.js',
 				'./public/js/vendor/prism.js',
+				'./public/js/vendor/svgxuse.js',
 				'./public/js/ga.js',
 				'./public/js/base.js'
 			]
@@ -31,6 +32,7 @@ const handlebars = require('handlebars'),
 				'./public/js/vendor/konflux.min.js',
 				'./public/js/vendor/kontext.min.js',
 				'./public/js/vendor/prism.min.js',
+				'./public/js/vendor/svgxuse.min.js',
 				'./public/js/combined.min.js'
 			]
 		}
