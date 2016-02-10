@@ -28,6 +28,7 @@ const Wanted = require('wanted'),
 					.task('script', ['./public/js/**/*.js', '!./public/js/combined.min.js', '!./public/js/vendor/*.js'])
 					.task('style', ['./public/css/**/*.css', '!./public/css/combined.min.css', '!./public/css/404*'])
 					.task('icon', ['./public/img/sprite/*.svg', '!./public/css/sprite/sprite.svg'])
+					.task('vendor', ['./public/js/vendor/*.js', '!./public/js/vendor/*.min.js'])
 					.start();
 			});
 		})
