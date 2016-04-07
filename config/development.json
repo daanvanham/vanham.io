@@ -14,13 +14,7 @@
 		],
 		"plugins": [
 			{"scooter": {}},
-			{"inert": {}},
-			{"blankie":{
-				"reportUri": "/api/v1/report/csp",
-				"scriptSrc": ["self", "www.google-analytics.com"],
-				"imgSrc": ["self", "www.google-analytics.com", "data:"],
-				"defaultSrc": ["self"]
-			}}
+			{"inert": {}}
 		]
 	},
 	"api": {
