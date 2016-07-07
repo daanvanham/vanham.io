@@ -41,6 +41,31 @@ exports.register = (server, options, next) => {
 		handler: handler('detail')
 	});
 
+	/* ServiceWorker routes */
+	server.route({
+		method: 'GET',
+		path: '/service-worker.js',
+		handler: function(request, reply) {
+			reply.file('service-worker.js');
+		}
+	});
+
+	server.route({
+		method: 'GET',
+		path: '/sw-toolbox.js',
+		handler: function(request, reply) {
+			reply.file('node_modules/sw-toolbox/sw-toolbox.js');
+		}
+	});
+
+	server.route({
+		method: 'GET',
+		path: '/manifest.json',
+		handler: function(request, reply) {
+			reply.file('manifest.json');
+		}
+	});
+
 	next();
 };
 

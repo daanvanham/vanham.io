@@ -1,0 +1,26 @@
+{
+  "short_name": "vanham.io",
+  "name": "vanham.io website",
+  "icons": [
+    {
+      "src": "/static/img/icon/2x.jpg",
+      "sizes": "96x96",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/static/img/icon/3x.jpg",
+      "sizes": "144x144",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/static/img/icon/4x.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#fff",
+  "theme_color": "#181849"
+}

@@ -44,6 +44,7 @@
     "scooter": "^2.0.1",
     "submerge": "^1.0.9",
     "subresource": "0.0.3",
+    "sw-toolbox": "^3.2.1",
     "vision": "^3.0.0"
   }
 }
