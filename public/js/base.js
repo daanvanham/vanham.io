@@ -1,4 +1,3 @@
-/* jshint browser:true */
 /* global kx, kontext, Prism */
 kx.ready(function() {
 	'use strict';
