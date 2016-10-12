@@ -1,4 +1,4 @@
-/* global kx, kontext, Prism */
+/* global kx, kontext, Prism, ga */
 kx.ready(function() {
 	'use strict';
 
@@ -119,4 +119,8 @@ kx.ready(function() {
 
 		return document.querySelector('article a[data-id="' + event.state.id + '"]').click();
 	};
+
+	window.addEventListener('error', function(event) {
+		ga('send', 'event', 'JavaScript Error', event.message, event.filename + ': ' + event.lineno);
+	});
 });
