@@ -26,5 +26,7 @@ test-lint:
 todo:
 	@grep -ir --exclude-dir=node_modules --exclude-dir=report --exclude=Makefile --exclude "*.html" todo * | cut -d: -f2- | tr "\t\/" " " | sed 's/^ *//';
 
+deploy-production:
+	pm2 deploy ecosystem.json production
 
 .PHONY: test
